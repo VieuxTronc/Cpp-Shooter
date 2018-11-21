@@ -1,0 +1,19 @@
+﻿  pch.cpp
+  Background.cpp
+e:\dev\c++\template sfml\smfl_01\smfl_01\background.cpp(13): warning C4244: 'argument' : conversion de 'unsigned int' en 'float', perte possible de données
+  Enemy.cpp
+  Entity.cpp
+  FormulaOne.cpp
+  GameManager.cpp
+  GameWindow.cpp
+e:\dev\c++\template sfml\smfl_01\smfl_01\gamewindow.cpp(51): warning C4018: '<' : incompatibilité signed/unsigned
+  MonsterTruck.cpp
+  Player.cpp
+  SMFL_01.cpp
+  Vehicule.cpp
+  Génération de code en cours
+  167 of 171 functions (97.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Fin de la génération du code
+  SMFL_01.vcxproj -> E:\Dev\C++\Template SFML\SMFL_01\Release\SMFL_01.exe
