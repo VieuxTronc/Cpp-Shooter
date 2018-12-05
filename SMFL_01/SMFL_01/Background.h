@@ -14,7 +14,6 @@ public:
 	~Background();
 
 private:
-	bool InitAlpha(FadeType _type);
 	float mSpriteAlpha = 0;
 	FadeType mFadeType; 
 };

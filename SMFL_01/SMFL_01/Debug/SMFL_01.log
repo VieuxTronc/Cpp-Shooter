@@ -1,2 +1,18 @@
-﻿  Projectile.cpp
-  SMFL_01.vcxproj -> E:\Dev\C++\Shooter\Shooter\SMFL_01\Debug\SMFL_01.exe
+﻿  pch.cpp
+  Background.cpp
+e:\dev\c++\shooter\shooter\smfl_01\smfl_01\background.cpp(53): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
+  Enemy.cpp
+  Entity.cpp
+  FormulaOne.cpp
+  GameManager.cpp
+  GameWindow.cpp
+  InputManager.cpp
+  Manager.cpp
+  MonsterTruck.cpp
+  Player.cpp
+  Projectile.cpp
+  main.cpp
+  Vehicule.cpp
+  Génération de code en cours...
+e:\dev\c++\shooter\shooter\smfl_01\smfl_01\gamemanager.cpp(121): warning C4715: 'GameManager::GetCurrentEntityList' : les chemins de contrôle ne retournent pas tous une valeur
+  SMFL_01.vcxproj -> E:\Dev\C++\Shooter\Shooter\SMFL_01\Debug\Shooter.exe

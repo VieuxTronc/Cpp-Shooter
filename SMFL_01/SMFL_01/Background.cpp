@@ -56,17 +56,3 @@ void Background::FadeBackground(float _dt, float _speed, FadeType _type)
 Background::~Background()
 {
 }
-
-bool Background::InitAlpha(FadeType _type)
-{
-	if (_type == FadeType::IN)
-	{
-		mSpriteAlpha = 0.0f;
-		return true; 
-	}
-	if (_type == FadeType::OUT)
-	{
-		mSpriteAlpha = 255.0f;
-		return true;
-	}
-}
