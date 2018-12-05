@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include <SFML/Graphics.hpp>
+#include "SFML/Graphics/Rect.hpp"
 
 class Entity
 {
@@ -16,23 +17,34 @@ public:
 
 	sf::Sprite GetSprite() { return mSprite; }
 
-	void SetEntityRotation(float _angle) { mAngle = _angle; }
+	void SetEntityRotation(float _angle);
 	float GetEntityRotation() { return mAngle; }
 
-	void MoveEntity(sf::Vector2f _amount);
-	void SetEntitySpeed(float _newSpeed) { mSpeed = _newSpeed; }
+	virtual void MoveEntity(sf::Vector2f _velocity, float _dt) {};
+	virtual void MoveEntity(float _dt) {};
+	virtual void SetEntitySpeed(float _newSpeed) { mSpeed = _newSpeed; }
 
-	virtual void UpdateEntity();
-	/*
+	virtual void UpdateEntity(float _dt) {};
+	virtual void UpdateEntity() {};
+	
 	virtual bool IsEntityAlive() { return mIsAlive; }
-	virtual void DestroyEntity();*/
+
+	void SetEntityLifeTime(float _newTime) { mLifeTime = _newTime; }
+	float GetEntityLifeTime() { return mLifeTime; }
+
+	virtual void Fire() {};
+	virtual void CheckEntityCollision() {};
 
 protected:
 	sf::Texture mTexture;
 	sf::Sprite mSprite;
 	sf::Vector2f mPosition;
+	sf::Vector2f mVelocity;
+	sf::Vector2f mSpawnPosition;
+	sf::Rect<float> mRect;
 	float mAngle;
 	bool mIsAlive;
-	float mSpeed = 0.4f; 
+	float mSpeed = 135.0f; 
+	float mLifeTime;
 };
 

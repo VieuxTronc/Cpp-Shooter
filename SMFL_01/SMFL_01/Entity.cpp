@@ -17,21 +17,19 @@ void Entity::CreateEntity(sf::Vector2f _pos, std::string _spritePath)
 	mSprite.setTexture(mTexture);
 
 	mPosition = _pos;
+	mSprite.setPosition(mPosition);
 
-	UpdateEntity();
+	mVelocity = sf::Vector2f(0.0f, 0.0f);
+
+	sf::Vector2u mTexSize = mTexture.getSize();
+
+	//mRect = sf::Rect(mPosition, mTexSize);
 
 	printf("Entity created with texture and pos.\n");
 }
 
-void Entity::MoveEntity(sf::Vector2f _amount) 
+void Entity::SetEntityRotation(float _angle)
 {
-	mPosition.x = (mSpeed > 0.0f) ? mPosition.x + (_amount.x * mSpeed) : mPosition.x + _amount.x;
-	mPosition.y = (mSpeed > 0.0f) ? mPosition.y + (_amount.y * mSpeed) : mPosition.y + _amount.y;
+	mAngle = _angle; 
+	mSprite.setRotation(mAngle);
 }
-
-void Entity::UpdateEntity()
-{
-	mSprite.setPosition(mPosition);
-}
-
-

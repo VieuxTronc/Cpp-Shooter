@@ -4,21 +4,35 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Background.h"
+#include "Manager.h"
 
-class GameManager
+class GameManager : public Manager
 {
 public:
 	GameManager();
 	~GameManager();
 
+	static GameManager* GetInstance();
+
 	void InitEntities(); 
-	void ListenToInputs();
-	void UpdateEntities();
-	Entity* GetEntity(int _id) { return entitiesList[_id]; }
-	unsigned int GetEntityCount() { return entitiesList.size(); }
+	void UpdateEntities(float _dt);
+	void CleanList(std::vector<Entity*> _list); 
+	void RemoveEntityFromList(Entity _entity);
+
+	enum EntityType {PLAYER, ENEMY, PROJECTILE};
+	void SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int _number);
+
+	enum GameState {BOOT_MENU, GAME};
+	void SetGameState(GameState _state);
+	GameState GetCurrentGameState() { return mGameState; }
+
+	std::vector<Entity*> GetCurrentEntityList(); 
 
 private:
+	static GameManager* s_pInstance; 
+	std::vector<Entity*> splashList;
 	std::vector<Entity*> entitiesList;
-	Player* pPlayer; 
+	GameState mGameState;
+	EntityType mEntityType; 
 };
 

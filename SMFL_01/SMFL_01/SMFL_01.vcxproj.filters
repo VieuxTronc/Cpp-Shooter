@@ -75,11 +75,17 @@
     <ClInclude Include="pch.h">
       <Filter>Fichiers d%27en-tête\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Fichiers d%27en-tête\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Fichiers d%27en-tête\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Fichiers d%27en-tête\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SMFL_01.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="GameWindow.cpp">
       <Filter>Fichiers sources\Window</Filter>
     </ClCompile>
@@ -109,6 +115,18 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Fichiers sources\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>Fichiers sources\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Fichiers sources\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Fichiers sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

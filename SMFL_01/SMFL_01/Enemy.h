@@ -8,5 +8,7 @@ public:
 	Enemy();
 	Enemy(sf::Vector2f _pos, std::string _spritePath);
 	~Enemy();
+
+	void UpdateEntity(float _dt);
 };
 
