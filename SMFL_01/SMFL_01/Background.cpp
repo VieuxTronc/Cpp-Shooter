@@ -6,7 +6,7 @@ Background::Background()
 {
 }
 
-Background::Background(std::string _spritePath)
+Background::Background(std::string _spritePath, bool _isFading, FadeType _type)
 {
 	GameWindow* pGameWindow = GameWindow::GetInstance();
 
@@ -20,34 +20,42 @@ Background::Background(std::string _spritePath)
 
 	mSprite.setScale(sf::Vector2f(sizeRatioX, sizeRatioY));
 	mSprite.setPosition(mPosition);
+
+	mFadeType = _type;
 }
 
 void Background::UpdateEntity(float _dt)
 {
-	FadeBackground(_dt, 25.0f, FadeType::IN);
+	FadeBackground(_dt, 29.0f);
 }
 
-void Background::FadeBackground(float _dt, float _speed, FadeType _type)
+void Background::FadeBackground(float _dt, float _speed)
 {
-	if (_type == IN)
+	switch (mFadeType)
 	{
-		mSpriteAlpha += _speed *_dt;
+	case Background::IN:
+		mSpriteAlpha += _speed * _dt;
 
 		if (mSpriteAlpha >= 255.0f)
 		{
 			GameManager::GetInstance()->SetGameState(GameManager::GAME);
 			return;
 		}
-	}
-	else
-	{
-		mSpriteAlpha -= _speed *_dt;
+		break;
+	case Background::OUT:
+		mSpriteAlpha -= _speed * _dt;
 
 		if (mSpriteAlpha <= 0.0f)
 		{
 			GameManager::GetInstance()->SetGameState(GameManager::GAME);
 			return;
 		}
+		break;
+	case Background::NONE:
+		mSpriteAlpha = 255.0f;
+		break;
+	default:
+		break;
 	}
 
 	mSprite.setColor(sf::Color(255, 255, 255, mSpriteAlpha));

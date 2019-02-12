@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "Entity.h"
-
+#include "DebugCustom.h"
 
 Entity::Entity()
 {
-	printf("Entity created\n");
+	DebugCustom::Log("Entity Constructor called.");
 }
 
 Entity::~Entity()
@@ -21,11 +21,11 @@ void Entity::CreateEntity(sf::Vector2f _pos, std::string _spritePath)
 
 	mVelocity = sf::Vector2f(0.0f, 0.0f);
 
-	sf::Vector2u mTexSize = mTexture.getSize();
+	mSize = sf::Vector2f(mTexture.getSize().x, mTexture.getSize().y);
 
-	//mRect = sf::Rect(mPosition, mTexSize);
+	mRect = sf::FloatRect(mPosition, mSize);
 
-	printf("Entity created with texture and pos.\n");
+	DebugCustom::Log("Entity created with texture and pos.");
 }
 
 void Entity::SetEntityRotation(float _angle)

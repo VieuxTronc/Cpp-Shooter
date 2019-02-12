@@ -43,6 +43,12 @@
     <Filter Include="Fichiers sources\Cours">
       <UniqueIdentifier>{3293a634-56f2-4df8-9b4d-43547e47e44f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Debug">
+      <UniqueIdentifier>{0e6eb6e2-2604-487c-887d-a0d296b822b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Debug">
+      <UniqueIdentifier>{6b4e652e-4632-4ad7-8454-323174c58106}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameWindow.h">
@@ -83,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Fichiers d%27en-tête\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugCustom.h">
+      <Filter>Fichiers d%27en-tête\Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugCustom.cpp">
+      <Filter>Fichiers sources\Debug</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

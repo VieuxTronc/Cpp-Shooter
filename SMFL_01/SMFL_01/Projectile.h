@@ -18,6 +18,6 @@ public:
 
 private: 
 	CollisionMode mCollisionMode;
-	float mSpeed = 270.0f;
+	float mSpeed = 350.0f;
 };
 

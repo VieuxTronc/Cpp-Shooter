@@ -2,6 +2,7 @@
 #include "GameManager.h"
 #include "GameWindow.h"
 #include "Projectile.h"
+#include "DebugCustom.h"
 
 GameManager* GameManager::s_pInstance = nullptr;
 
@@ -26,11 +27,11 @@ GameManager* GameManager::GetInstance()
 void GameManager::InitEntities()
 {
 	//Splash Screen
-	Background* pSplash = new Background("../data/splash.jpg");
+	Background* pSplash = new Background("../data/splash.jpg", true, Background::FadeType::IN);
 	splashList.push_back(pSplash);
 
 	//Game
-	Background* pBackground = new Background("../data/background.png");
+	Background* pBackground = new Background("../data/background.png", false, Background::FadeType::NONE);
 	entitiesList.push_back(pBackground);
 
 	Player::GetInstance()->InitPlayer(sf::Vector2f(0.0f, 0.0f), "../data/ship.png");
@@ -38,8 +39,9 @@ void GameManager::InitEntities()
 
 	Enemy* pEnemy = new Enemy(sf::Vector2f(100.0f, 250.0f), "../data/ship.png");
 	entitiesList.push_back(pEnemy);
-
-	printf("Entities Initiated.\n");
+	enemiesList.push_back(pEnemy);
+	
+	DebugCustom::Log("Entities Initiated.");
 } 
 
 void GameManager::UpdateEntities(float _dt)
@@ -50,12 +52,15 @@ void GameManager::UpdateEntities(float _dt)
 		for (size_t i = 0; i < splashList.size(); i++)
 		{
 			splashList[i]->UpdateEntity(_dt);
+			splashList[i]->SetEntityID(i);
 		}
 		break;
 	case GameManager::GAME:
+		CleanEntityList();
 		for (size_t i = 0; i < entitiesList.size(); i++)
 		{
 			entitiesList[i]->UpdateEntity(_dt);
+			entitiesList[i]->SetEntityID(i);
 		}
 		break;
 	default:
@@ -63,26 +68,33 @@ void GameManager::UpdateEntities(float _dt)
 	}
 }
 
-void GameManager::CleanList(std::vector<Entity*> _list)
+void GameManager::CleanEntityList()
 {
-	for (size_t i = 0; i < _list.size(); i++)
+	for (size_t i = 0; i < entitiesList.size(); i++)
 	{
-		delete _list[i]; 
+		if (entitiesList[i]->IsEntityAlive() == false)
+		{
+			Entity* entityToDelete = entitiesList[i];
+			int idToDelete = entityToDelete->GetEntityID();
+
+			DebugCustom::Log("Entity will be removed");
+
+			delete entityToDelete;
+			entitiesList.erase(entitiesList.begin() + idToDelete);
+		}
 	}
-	std::cout << "Cleaning done in Game Manager." << endl;
 }
 
-void GameManager::RemoveEntityFromList(Entity _entity)
+void GameManager::RemoveEntityFromList(int _id)
 {
-
+	delete entitiesList[_id];
+	entitiesList.erase(entitiesList.begin() + _id);
+	
+	DebugCustom::Log("Entity has been removed ");
 }
 
 void GameManager::SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int _number)
 {
-	if (_type == EntityType::PLAYER)
-	{
-		//respawn Player
-	}
 	for (size_t i = 0; i < _number; i++)
 	{
 		switch (_type)
@@ -93,7 +105,7 @@ void GameManager::SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int 
 		case GameManager::PROJECTILE:
 			Projectile* pProjectile = new Projectile(_pos, "../data/pokeball.png", Projectile::CollisionMode::ENEMY);
 			entitiesList.push_back(pProjectile);
-			printf("Spawned a projectile");
+			DebugCustom::Log("Spawned a projectile");
 			break;
 		}
 	}
@@ -102,7 +114,6 @@ void GameManager::SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int 
 void GameManager::SetGameState(GameState _state)
 {
 	mGameState = _state;
-	//std::cout << "Current Game state is : " + std::to_string(_state) << endl;
 }
 
 std::vector<Entity*> GameManager::GetCurrentEntityList()
@@ -117,5 +128,13 @@ std::vector<Entity*> GameManager::GetCurrentEntityList()
 		break;
 	default:
 		break;
+	}
+}
+
+std::vector<Entity*> GameManager::GetCurrentEnemyList()
+{
+	if (GameManager::GAME)
+	{
+		return enemiesList; 
 	}
 }

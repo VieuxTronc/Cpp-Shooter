@@ -2,12 +2,15 @@
 #include "Projectile.h"
 #include "Player.h"
 #include "GameWindow.h"
+#include "GameManager.h"
+#include "DebugCustom.h"
 
 Projectile::Projectile(sf::Vector2f _pos, std::string _spritePath, CollisionMode _colMode)
 {
 	CreateEntity(_pos, _spritePath);
 	mSprite.setColor(sf::Color(255, 255, 255, 0));
 	mCollisionMode = _colMode;
+	mSprite.setScale(sf::Vector2f(0.5f, 0.5f));
 	LaunchProjectile(sf::Vector2f(1.0f, 0.0f));
 }
 
@@ -30,36 +33,44 @@ void Projectile::MoveEntity(float _dt)
 		mPosition.y += (mSpeed * _dt) * mVelocity.y;
 
 		mSprite.setPosition(mPosition);
+
+		mRect = sf::FloatRect(mPosition, mSize);
 	}
 }
 
 void Projectile::CheckEntityCollision()
 {
+	std::vector<Entity*> enemyList = GameManager::GetInstance()->GetCurrentEnemyList();
+
 	switch (mCollisionMode)
 	{
 	case Projectile::PLAYER:
 
 		break;
 	case Projectile::ENEMY:
-		//if(IntersectRect())
-		if (mPosition.x <= Player::GetInstance()->GetEntityPosition().x)
+		for (size_t i = 0; i < enemyList.size(); i++)
 		{
-			printf("coll with player X");
+			sf::FloatRect tempEnemyRect = enemyList[i]->GetEntityRect();
+			
+			if (mRect.intersects(tempEnemyRect) == true)
+			{
+				DebugCustom::Log("Projectile Intersecting");
+				enemyList[i]->DestroyEntity();
+			}
 		}
 		break;
 	default:
-		printf("No Collision mode set for this projectile.");
+		DebugCustom::Warning("No collision mode set for this projectile !");
 		break;
 	}
 
-	//TODO Remove missile correctly 
 	if (mPosition.x >= GameWindow::GetInstance()->GetWindowSize().x)
 	{
-		//GameManager::GetInstance()->GetCurrentEntityList().era();
+		mIsAlive = false; 
 	}
 	if (mPosition.y >= GameWindow::GetInstance()->GetWindowSize().y)
 	{
-		printf("OOB");
+		mIsAlive = false;
 	}
 }
 

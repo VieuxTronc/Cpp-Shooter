@@ -3,6 +3,7 @@
 #include "GameWindow.h"
 #include "Entity.h"
 #include "Player.h"
+#include "DebugCustom.h"
 
 GameWindow* GameWindow::s_pInstance = nullptr;
 
@@ -18,7 +19,7 @@ GameWindow* GameWindow::GetInstance()
 
 GameWindow::GameWindow()
 {
-	printf("Window Object created.\n");
+	DebugCustom::Log("Window Object created.");
 }
 
 GameWindow::~GameWindow()
@@ -31,7 +32,7 @@ void GameWindow::CreateWindow()
 	window.setMouseCursorVisible(false);
 	GameManager::GetInstance()->InitEntities();
 	GameManager::GetInstance()->SetGameState(GameManager::BOOT_MENU);
-	printf("Window created.\n");
+	DebugCustom::Log("Window created.");
 }
 
 void GameWindow::UpdateWindow()

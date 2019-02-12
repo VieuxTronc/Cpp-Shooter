@@ -7,10 +7,10 @@ class Background : public Entity
 {
 public:
 	Background();
-	Background(std::string _spritePath);
-	enum FadeType{IN, OUT};
+	enum FadeType{IN, OUT, NONE};
+	Background(std::string _spritePath, bool _isFading, FadeType _type);
 	void UpdateEntity(float _dt);
-	void FadeBackground(float _dt, float _speed, FadeType _type);
+	void FadeBackground(float _dt, float _speed);
 	~Background();
 
 private:

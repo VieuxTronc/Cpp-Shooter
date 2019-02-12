@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include <SFML/Graphics.hpp>
 #include "GameWindow.h"
+#include "DebugCustom.h"
 
 Enemy::Enemy()
 {
@@ -46,8 +47,14 @@ void Enemy::UpdateEntity(float _dt)
 		mVelocity.x = -1.0f;
 	}
 
-	//std::cout << std::to_string(mPosition.y).c_str() << endl;
-
 	mSprite.setPosition(mPosition);
 
+	mRect = sf::FloatRect(mPosition, mSize);
+
+	//DebugCustom.("");
+}
+
+void Enemy::DestroyEntity()
+{
+	GameManager::GetInstance()->RemoveEntityFromList(mEntityID);
 }

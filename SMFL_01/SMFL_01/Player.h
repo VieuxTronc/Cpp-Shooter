@@ -16,8 +16,8 @@ private:
 	static Player* s_pInstance; 
 	Player();
 	~Player();
-	float mSpeed = 175.0f;
-	float mFireRate = 1.0f;
+	float mSpeed = 250.0f;
+	float mFireRate = 0.25f;
 	float mFireTimer = mFireRate;
 };
 

@@ -10,5 +10,6 @@ public:
 	~Enemy();
 
 	void UpdateEntity(float _dt);
+	void DestroyEntity(); 
 };
 

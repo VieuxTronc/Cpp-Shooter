@@ -16,8 +16,8 @@ public:
 
 	void InitEntities(); 
 	void UpdateEntities(float _dt);
-	void CleanList(std::vector<Entity*> _list); 
-	void RemoveEntityFromList(Entity _entity);
+	void CleanEntityList(); 
+	void RemoveEntityFromList(int _id);
 
 	enum EntityType {PLAYER, ENEMY, PROJECTILE};
 	void SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int _number);
@@ -27,11 +27,13 @@ public:
 	GameState GetCurrentGameState() { return mGameState; }
 
 	std::vector<Entity*> GetCurrentEntityList(); 
+	std::vector<Entity*> GetCurrentEnemyList(); 
 
 private:
 	static GameManager* s_pInstance; 
 	std::vector<Entity*> splashList;
 	std::vector<Entity*> entitiesList;
+	std::vector<Entity*> enemiesList;
 	GameState mGameState;
 	EntityType mEntityType; 
 };

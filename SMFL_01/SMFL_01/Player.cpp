@@ -30,6 +30,7 @@ void Player::InitPlayer(sf::Vector2f _pos, std::string _spritePath)
 	_pos.y = (GameWindow::GetInstance()->GetWindowSizef().y / 2) - mTexture.getSize().y;
 
 	CreateEntity(_pos, _spritePath);
+
 	mVelocity = sf::Vector2f(1.0f, 1.0f);
 }
 
@@ -60,6 +61,8 @@ void Player::MoveEntity(sf::Vector2f _inputVelocity, float _dt)
 	mPosition.y += (mSpeed * _dt) * mVelocity.y;
 
 	mSprite.setPosition(mPosition);
+
+	mRect = sf::FloatRect(mPosition, mSize);
 }
 
 void Player::Fire(float _dt)
