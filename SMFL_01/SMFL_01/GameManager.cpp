@@ -3,6 +3,7 @@
 #include "GameWindow.h"
 #include "Projectile.h"
 #include "DebugCustom.h"
+#include "UIText.h"
 
 GameManager* GameManager::s_pInstance = nullptr;
 
@@ -30,6 +31,11 @@ void GameManager::InitEntities()
 	Background* pSplash = new Background("../data/splash.jpg", true, Background::FadeType::IN);
 	splashList.push_back(pSplash);
 
+	//Boot menu
+	UIText* pUIText = new UIText("Test", 30.0f, sf::Vector2f(25.0f, 25.0f));
+	bootMenuList.push_back(pUIText);
+	bootMenuTextList.push_back(pUIText);
+
 	//Game
 	Background* pBackground = new Background("../data/background.png", false, Background::FadeType::NONE);
 	entitiesList.push_back(pBackground);
@@ -48,11 +54,18 @@ void GameManager::UpdateEntities(float _dt)
 {
 	switch (mGameState)
 	{
-	case GameManager::BOOT_MENU:
+	case GameManager::SPLASH_SCREEN:
 		for (size_t i = 0; i < splashList.size(); i++)
 		{
 			splashList[i]->UpdateEntity(_dt);
 			splashList[i]->SetEntityID(i);
+		}
+		break;
+	case GameManager::BOOT_MENU:
+		for (size_t i = 0; i < bootMenuList.size(); i++)
+		{
+			bootMenuList[i]->UpdateEntity(_dt);
+			bootMenuList[i]->SetEntityID(i);
 		}
 		break;
 	case GameManager::GAME:
@@ -120,8 +133,11 @@ std::vector<Entity*> GameManager::GetCurrentEntityList()
 {
 	switch (mGameState)
 	{
-	case GameManager::BOOT_MENU:
+	case GameManager::SPLASH_SCREEN:
 		return splashList; 
+		break;
+	case GameManager::BOOT_MENU:
+		return bootMenuList;
 		break;
 	case GameManager::GAME:
 		return entitiesList;
@@ -136,5 +152,20 @@ std::vector<Entity*> GameManager::GetCurrentEnemyList()
 	if (GameManager::GAME)
 	{
 		return enemiesList; 
+	}
+}
+
+std::vector<UIText*> GameManager::GetCurrentTextList()
+{
+	switch (mGameState)
+	{
+	case GameManager::BOOT_MENU:
+		return bootMenuTextList;
+		break;
+	case GameManager::GAME:
+		//return ;
+		break;
+	default:
+		break;
 	}
 }

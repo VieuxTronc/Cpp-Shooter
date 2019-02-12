@@ -42,9 +42,9 @@ void InputManager::Update(float _dt)
 	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
-		if (GameManager::GetInstance()->GetCurrentGameState() == GameManager::BOOT_MENU)
+		if (GameManager::GetInstance()->GetCurrentGameState() == GameManager::SPLASH_SCREEN)
 		{
-			GameManager::GetInstance()->SetGameState(GameManager::GAME);
+			GameManager::GetInstance()->SetGameState(GameManager::BOOT_MENU);
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))

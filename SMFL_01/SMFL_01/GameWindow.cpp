@@ -30,8 +30,9 @@ void GameWindow::CreateWindow()
 {
 	window.create(sf::VideoMode(windowSize.x, windowSize.y), "");
 	window.setMouseCursorVisible(false);
-	GameManager::GetInstance()->InitEntities();
-	GameManager::GetInstance()->SetGameState(GameManager::BOOT_MENU);
+	pGameManager = GameManager::GetInstance(); 
+	pGameManager->InitEntities();
+	pGameManager->SetGameState(GameManager::SPLASH_SCREEN);
 	DebugCustom::Log("Window created.");
 }
 
@@ -69,12 +70,15 @@ void GameWindow::UpdateWindow()
 		window.clear();
 
 		//Update entities
-		GameManager::GetInstance()->UpdateEntities(dt.asSeconds());
+		pGameManager->UpdateEntities(dt.asSeconds());
 
 		//Draw
-		for (size_t i = 0; i < GameManager::GetInstance()->GetCurrentEntityList().size(); i++)
+		for (size_t i = 0; i < pGameManager->GetCurrentEntityList().size(); i++)
 		{
-			window.draw(GameManager::GetInstance()->GetCurrentEntityList()[i]->GetSprite());
+			window.draw(pGameManager->GetCurrentEntityList()[i]->GetSprite());
+
+			if(pGameManager->GetCurrentGameState() != pGameManager->SPLASH_SCREEN)
+			window.draw(pGameManager->GetCurrentTextList()[i]->GetText());
 		}
 		
 		// Update the window

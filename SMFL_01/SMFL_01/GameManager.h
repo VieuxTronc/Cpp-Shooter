@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Background.h"
 #include "Manager.h"
+#include "UIText.h"
 
 class GameManager : public Manager
 {
@@ -22,18 +23,25 @@ public:
 	enum EntityType {PLAYER, ENEMY, PROJECTILE};
 	void SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int _number);
 
-	enum GameState {BOOT_MENU, GAME};
+	enum GameState {SPLASH_SCREEN, BOOT_MENU, GAME};
 	void SetGameState(GameState _state);
 	GameState GetCurrentGameState() { return mGameState; }
 
 	std::vector<Entity*> GetCurrentEntityList(); 
 	std::vector<Entity*> GetCurrentEnemyList(); 
+	std::vector<UIText*> GetCurrentTextList(); 
 
 private:
 	static GameManager* s_pInstance; 
+	//Splashes
 	std::vector<Entity*> splashList;
+	//Boot menu 
+	std::vector<Entity*> bootMenuList;
+	std::vector<UIText*> bootMenuTextList;
+	//Game
 	std::vector<Entity*> entitiesList;
 	std::vector<Entity*> enemiesList;
+	
 	GameState mGameState;
 	EntityType mEntityType; 
 };

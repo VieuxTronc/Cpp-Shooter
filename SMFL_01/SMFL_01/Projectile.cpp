@@ -18,10 +18,10 @@ Projectile::~Projectile()
 {
 }
 
-void Projectile::LaunchProjectile(sf::Vector2f _volicity)
+void Projectile::LaunchProjectile(sf::Vector2f _velocity)
 {
 	mSprite.setColor(sf::Color(255, 255, 255, 255));
-	mVelocity = _volicity;
+	mVelocity = _velocity;
 	mIsAlive = true;
 }
 
@@ -54,8 +54,8 @@ void Projectile::CheckEntityCollision()
 			
 			if (mRect.intersects(tempEnemyRect) == true)
 			{
-				DebugCustom::Log("Projectile Intersecting");
-				enemyList[i]->DestroyEntity();
+				DebugCustom::Log("Projectile Intersecting with something");
+				mIsAlive = false;
 			}
 		}
 		break;

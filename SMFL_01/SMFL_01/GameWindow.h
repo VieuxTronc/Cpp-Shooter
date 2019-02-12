@@ -21,6 +21,7 @@ public:
 
 private:
 	static GameWindow* s_pInstance;
+	GameManager* pGameManager;
 	sf::Vector2u windowSize = sf::Vector2u(1280, 720);
 	sf::Vector2f windowSizef = sf::Vector2f(1280.0f, 720.0f);
 	float currentFrameRate;

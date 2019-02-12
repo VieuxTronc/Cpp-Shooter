@@ -49,6 +49,12 @@
     <Filter Include="Fichiers d%27en-tête\Debug">
       <UniqueIdentifier>{6b4e652e-4632-4ad7-8454-323174c58106}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\UI">
+      <UniqueIdentifier>{57e060a2-8c02-4b6a-8361-b093579245ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\UI">
+      <UniqueIdentifier>{8a698764-6d7b-4731-8382-108c3c9eb7d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameWindow.h">
@@ -92,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="DebugCustom.h">
       <Filter>Fichiers d%27en-tête\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="UIText.h">
+      <Filter>Fichiers d%27en-tête\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="DebugCustom.cpp">
       <Filter>Fichiers sources\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="UIText.cpp">
+      <Filter>Fichiers sources\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
