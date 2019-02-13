@@ -81,10 +81,10 @@ void GameWindow::UpdateWindow()
 		//Draw
 		for (size_t i = 0; i < pGameManager->GetCurrentEntityList().size(); i++)
 		{
-			window.draw(pGameManager->GetCurrentEntityList()[i]->GetSprite());
+			window.draw(*pGameManager->GetCurrentEntityList()[i]->GetDrawable());
 
-			if(pGameManager->GetCurrentGameState() == pGameManager->BOOT_MENU)
-			window.draw(BootMenuManager::GetInstance()->GetCurrentButtonList()[i]->GetText());
+			//if(pGameManager->GetCurrentGameState() == pGameManager->BOOT_MENU)
+			//window.draw(BootMenuManager::GetInstance()->GetBootMenuEntityList()[i]->GetText());
 		}
 		
 		// Update the window

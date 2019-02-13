@@ -4,6 +4,7 @@
 #include "SFML/Window/Keyboard.hpp"
 #include "Player.h"
 #include "GameWindow.h"
+#include "BootMenuManager.h"
 
 InputManager* InputManager::s_pInstance = nullptr;
 
@@ -40,6 +41,14 @@ void InputManager::Update(float _dt)
 	{
 		Player::GetInstance()->MoveEntity(sf::Vector2f(1.0f, 0.0f), _dt);
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		BootMenuManager::GetInstance()->SetCurrentSelectedButton(BootMenuManager::PREVIOUS);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		BootMenuManager::GetInstance()->SetCurrentSelectedButton(BootMenuManager::NEXT);
+	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
 		if (GameManager::GetInstance()->GetCurrentGameState() == GameManager::SPLASH_SCREEN)
@@ -47,16 +56,16 @@ void InputManager::Update(float _dt)
 			GameManager::GetInstance()->SetGameState(GameManager::BOOT_MENU);
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-	{
-		GameWindow::GetInstance()->CloseWindow();
-	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		if (GameManager::GetInstance()->GetCurrentGameState() == GameManager::GAME)
 		{
 			Player::GetInstance()->Fire(_dt);
 		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		GameWindow::GetInstance()->CloseWindow();
 	}
 }
 

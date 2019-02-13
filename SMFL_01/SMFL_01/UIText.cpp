@@ -15,6 +15,7 @@ UIText::UIText(string _txt, unsigned int _size, sf::Vector2f _pos)
 		mSize = _size; 
 		mText.setPosition(_pos);
 		mPosition = _pos; 
+		mColor = sf::Color(255, 255, 255, 255);
 		mText.setFillColor(sf::Color(255, 255, 255, 255));
 	}
 }
@@ -28,7 +29,20 @@ void UIText::UpdateText(string _txt)
 
 }
 
-void UIText::SetSelected()
+void UIText::SetSelected(bool _isSelected)
 {
+	mIsSelected = _isSelected;
 
+	if (mIsSelected)
+		mText.setFillColor(sf::Color::Red);
+	else
+		mText.setFillColor(sf::Color(mColor));
+}
+
+bool UIText::IsSelected()
+{
+	if (mIsSelected)
+		return true;
+	else
+		return false;
 }

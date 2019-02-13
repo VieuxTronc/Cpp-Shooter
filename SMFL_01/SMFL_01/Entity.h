@@ -19,7 +19,7 @@ public:
 	void SetEntityPosition(sf::Vector2f _pos) { mPosition = _pos; }
 	sf::Vector2f GetEntityPosition() { return mPosition; }
 
-	virtual sf::Sprite GetSprite() { return mSprite; }
+	virtual sf::Drawable* GetDrawable() { return &mSprite; }
 
 	void SetEntityRotation(float _angle);
 	float GetEntityRotation() { return mAngle; }

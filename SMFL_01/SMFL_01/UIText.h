@@ -11,8 +11,9 @@ public:
 	~UIText();
 
 	void UpdateText(string _txt); 
-	void SetSelected();
-	sf::Text GetText() { return mText; }
+	void SetSelected(bool _isSelected);
+	bool IsSelected();
+	virtual sf::Drawable* GetDrawable() { return &mText; }
 
 private: 
 	sf::Text mText;

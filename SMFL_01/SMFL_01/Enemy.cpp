@@ -53,8 +53,3 @@ void Enemy::UpdateEntity(float _dt)
 
 	//DebugCustom.("");
 }
-
-void Enemy::DestroyEntity()
-{
-	GameManager::GetInstance()->RemoveEntityFromList(mEntityID);
-}

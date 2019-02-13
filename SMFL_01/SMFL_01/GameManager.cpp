@@ -74,10 +74,8 @@ void GameManager::UpdateEntities(float _dt)
 	case GameManager::BOOT_MENU:
 		for (size_t i = 0; i < bootMenuList.size(); i++)
 		{
-			BootMenuManager::GetInstance()->GetCurrentButtonList()[i]->UpdateEntity(_dt);
-			BootMenuManager::GetInstance()->GetCurrentButtonList()[i]->SetEntityID(i);
-			//bootMenuList[i]->UpdateEntity(_dt);
-			//bootMenuList[i]->SetEntityID(i);
+			BootMenuManager::GetInstance()->GetBootMenuEntityList()[i]->UpdateEntity(_dt);
+			BootMenuManager::GetInstance()->GetBootMenuEntityList()[i]->SetEntityID(i);
 		}
 		break;
 	case GameManager::GAME:
@@ -101,7 +99,7 @@ void GameManager::CleanEntityList()
 		{
 			Entity* entityToDelete = entitiesList[i];
 			int idToDelete = entityToDelete->GetEntityID();
-
+			
 			DebugCustom::Log("Entity will be removed");
 
 			delete entityToDelete;
@@ -110,13 +108,13 @@ void GameManager::CleanEntityList()
 	}
 }
 
-void GameManager::RemoveEntityFromList(int _id)
-{
-	delete entitiesList[_id];
-	entitiesList.erase(entitiesList.begin() + _id);
-	
-	DebugCustom::Log("Entity has been removed ");
-}
+//void GameManager::RemoveEntityFromList(int _id)
+//{
+//	delete entitiesList[_id];
+//	entitiesList.erase(entitiesList.begin() + _id);
+//	
+//	DebugCustom::Log("Entity has been removed ");
+//}
 
 void GameManager::SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int _number)
 {
@@ -149,8 +147,7 @@ std::vector<Entity*> GameManager::GetCurrentEntityList()
 		return splashList; 
 		break;
 	case GameManager::BOOT_MENU:
-		//FIX ME : Boot menu list is currently empty, find a way to register all current entity in one list, and update it whenever you change game state. 
-		return bootMenuList;
+		return BootMenuManager::GetInstance()->GetBootMenuEntityList();
 		break;
 	case GameManager::GAME:
 		return entitiesList;
@@ -165,20 +162,5 @@ std::vector<Entity*> GameManager::GetCurrentEnemyList()
 	if (GameManager::GAME)
 	{
 		return enemiesList; 
-	}
-}
-
-std::vector<UIText*> GameManager::GetCurrentTextList()
-{
-	switch (mGameState)
-	{
-	case GameManager::BOOT_MENU:
-		return bootMenuTextList;
-		break;
-	case GameManager::GAME:
-		//return ;
-		break;
-	default:
-		break;
 	}
 }

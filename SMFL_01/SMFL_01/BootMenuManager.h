@@ -9,13 +9,24 @@ class BootMenuManager
 {
 public:
 	static BootMenuManager* GetInstance();
+
+	enum ButtonSwitchDirection {NEXT, PREVIOUS};
+	ButtonSwitchDirection eButtonSwitchDirection; 
+
 	BootMenuManager();
 	~BootMenuManager();
+
 	void InitBootMenu(); 
-	std::vector<UIText*> GetCurrentButtonList() { return buttonList; }
+
+	std::vector<Entity*> GetBootMenuEntityList() { return bootMenuEntityList; }
+
+	void SetCurrentSelectedButton(ButtonSwitchDirection _direction); 
+	void SetCurrentSelectedButton(int _id); 
+	int GetCurrentSelectedButton(); 
 
 private: 
 	static BootMenuManager *s_pInstance;
-	std::vector<UIText*> buttonList;
+	std::vector<Entity*> bootMenuEntityList;
+	std::vector<UIText*> bootMenuButtonList;
 };
 

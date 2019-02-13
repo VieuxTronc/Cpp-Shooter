@@ -1,17 +1,7 @@
-﻿  Background.cpp
-d:\dev\c++\shooter\shooter\smfl_01\smfl_01\background.cpp(61): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-  BootMenuManager.cpp
-d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(23): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(26): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(29): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-  Enemy.cpp
-  GameManager.cpp
-  GameWindow.cpp
-  InputManager.cpp
-  Player.cpp
-  Projectile.cpp
-  main.cpp
-  Generating Code...
-d:\dev\c++\shooter\shooter\smfl_01\smfl_01\gamemanager.cpp(160): warning C4715: 'GameManager::GetCurrentEntityList': not all control paths return a value
-d:\dev\c++\shooter\shooter\smfl_01\smfl_01\gamemanager.cpp(183): warning C4715: 'GameManager::GetCurrentTextList': not all control paths return a value
-  SMFL_01.vcxproj -> D:\DEV\C++\Shooter\Shooter\SMFL_01\Debug\Shooter.exe
+﻿  BootMenuManager.cpp
+d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(33): warning C4244: 'argument' : conversion de 'float' en 'unsigned int', perte possible de données
+d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(37): warning C4244: 'argument' : conversion de 'float' en 'unsigned int', perte possible de données
+d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(41): warning C4244: 'argument' : conversion de 'float' en 'unsigned int', perte possible de données
+d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(71): warning C4018: '>' : incompatibilité signed/unsigned
+d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(93): warning C4018: '>=' : incompatibilité signed/unsigned
+  SMFL_01.vcxproj -> D:\Dev\C++\Shooter\Shooter\SMFL_01\Debug\Shooter.exe
