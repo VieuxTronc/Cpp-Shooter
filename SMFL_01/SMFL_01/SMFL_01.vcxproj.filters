@@ -102,6 +102,9 @@
     <ClInclude Include="UIText.h">
       <Filter>Fichiers d%27en-tête\UI</Filter>
     </ClInclude>
+    <ClInclude Include="BootMenuManager.h">
+      <Filter>Fichiers d%27en-tête\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameWindow.cpp">
@@ -151,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="UIText.cpp">
       <Filter>Fichiers sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BootMenuManager.cpp">
+      <Filter>Fichiers sources\Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

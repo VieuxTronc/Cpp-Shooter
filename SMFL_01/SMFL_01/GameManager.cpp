@@ -4,6 +4,7 @@
 #include "Projectile.h"
 #include "DebugCustom.h"
 #include "UIText.h"
+#include "BootMenuManager.h"
 
 GameManager* GameManager::s_pInstance = nullptr;
 
@@ -31,10 +32,19 @@ void GameManager::InitEntities()
 	Background* pSplash = new Background("../data/splash.jpg", true, Background::FadeType::IN);
 	splashList.push_back(pSplash);
 
-	//Boot menu
-	UIText* pUIText = new UIText("Test", 30.0f, sf::Vector2f(25.0f, 25.0f));
-	bootMenuList.push_back(pUIText);
-	bootMenuTextList.push_back(pUIText);
+	//Boot menu 
+	BootMenuManager::GetInstance()->InitBootMenu();
+	//UIText* pUITextPlay = new UIText("Play", 30.0f, sf::Vector2f(GameWindow::GetInstance()->GetWindowMiddlePos().x - 35.0f, GameWindow::GetInstance()->GetWindowMiddlePos().y));
+	//bootMenuList.push_back(pUITextPlay);
+	//bootMenuTextList.push_back(pUITextPlay);
+	//
+	//UIText* pUITextOptions = new UIText("Options", 30.0f, sf::Vector2f(GameWindow::GetInstance()->GetWindowMiddlePos().x - 35.0f, GameWindow::GetInstance()->GetWindowMiddlePos().y + 35.0f));
+	//bootMenuList.push_back(pUITextOptions);
+	//bootMenuTextList.push_back(pUITextOptions);
+	//
+	//UIText* pUITextQuit = new UIText("Quit", 30.0f, sf::Vector2f(GameWindow::GetInstance()->GetWindowMiddlePos().x - 35.0f, GameWindow::GetInstance()->GetWindowMiddlePos().y + 70.0f));
+	//bootMenuList.push_back(pUITextQuit);
+	//bootMenuTextList.push_back(pUITextQuit);
 
 	//Game
 	Background* pBackground = new Background("../data/background.png", false, Background::FadeType::NONE);
@@ -64,8 +74,10 @@ void GameManager::UpdateEntities(float _dt)
 	case GameManager::BOOT_MENU:
 		for (size_t i = 0; i < bootMenuList.size(); i++)
 		{
-			bootMenuList[i]->UpdateEntity(_dt);
-			bootMenuList[i]->SetEntityID(i);
+			BootMenuManager::GetInstance()->GetCurrentButtonList()[i]->UpdateEntity(_dt);
+			BootMenuManager::GetInstance()->GetCurrentButtonList()[i]->SetEntityID(i);
+			//bootMenuList[i]->UpdateEntity(_dt);
+			//bootMenuList[i]->SetEntityID(i);
 		}
 		break;
 	case GameManager::GAME:
@@ -137,6 +149,7 @@ std::vector<Entity*> GameManager::GetCurrentEntityList()
 		return splashList; 
 		break;
 	case GameManager::BOOT_MENU:
+		//FIX ME : Boot menu list is currently empty, find a way to register all current entity in one list, and update it whenever you change game state. 
 		return bootMenuList;
 		break;
 	case GameManager::GAME:

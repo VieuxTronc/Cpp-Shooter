@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "GameManager.h"
 #include "GameWindow.h"
+#include "BootMenuManager.h"
 #include "Entity.h"
 #include "Player.h"
 #include "DebugCustom.h"
@@ -30,9 +31,14 @@ void GameWindow::CreateWindow()
 {
 	window.create(sf::VideoMode(windowSize.x, windowSize.y), "");
 	window.setMouseCursorVisible(false);
+	mWindowMiddlePos = sf::Vector2f(windowSize.x / 2.0f, windowSize.y / 2.0f);
+
 	pGameManager = GameManager::GetInstance(); 
 	pGameManager->InitEntities();
 	pGameManager->SetGameState(GameManager::SPLASH_SCREEN);
+
+	//pBootMenuManager = BootMenuManager::GetInstance();
+
 	DebugCustom::Log("Window created.");
 }
 
@@ -77,8 +83,8 @@ void GameWindow::UpdateWindow()
 		{
 			window.draw(pGameManager->GetCurrentEntityList()[i]->GetSprite());
 
-			if(pGameManager->GetCurrentGameState() != pGameManager->SPLASH_SCREEN)
-			window.draw(pGameManager->GetCurrentTextList()[i]->GetText());
+			if(pGameManager->GetCurrentGameState() == pGameManager->BOOT_MENU)
+			window.draw(BootMenuManager::GetInstance()->GetCurrentButtonList()[i]->GetText());
 		}
 		
 		// Update the window

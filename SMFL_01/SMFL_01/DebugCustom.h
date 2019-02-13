@@ -8,7 +8,7 @@ public:
 	DebugCustom();
 	~DebugCustom();
 
-	DebugCustom* GetInstance(); 
+	static DebugCustom* GetInstance(); 
 	static void Log(std::string _msg); 
 	static void Warning(std::string _msg); 
 	static void Error(std::string _msg); 
