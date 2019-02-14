@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "GameWindow.h"
 #include "BootMenuManager.h"
+#include "DebugCustom.h"
 
 InputManager* InputManager::s_pInstance = nullptr;
 
@@ -41,14 +42,6 @@ void InputManager::Update(float _dt)
 	{
 		Player::GetInstance()->MoveEntity(sf::Vector2f(1.0f, 0.0f), _dt);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		BootMenuManager::GetInstance()->SetCurrentSelectedButton(BootMenuManager::PREVIOUS);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		BootMenuManager::GetInstance()->SetCurrentSelectedButton(BootMenuManager::NEXT);
-	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
 		if (GameManager::GetInstance()->GetCurrentGameState() == GameManager::SPLASH_SCREEN)
@@ -66,6 +59,34 @@ void InputManager::Update(float _dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		GameWindow::GetInstance()->CloseWindow();
+	}
+}
+
+void InputManager::UpdateEvents(sf::Event _event)
+{
+	//Boot menu
+	if (GameManager::GetInstance()->GetCurrentGameState() == GameManager::BOOT_MENU)
+	{
+		if (_event.type == sf::Event::KeyReleased)
+		{
+			if (_event.key.code == sf::Keyboard::Up)
+			{
+				BootMenuManager::GetInstance()->SetCurrentSelectedButton(BootMenuManager::PREVIOUS);
+			}
+			if (_event.key.code == sf::Keyboard::Down)
+			{
+				BootMenuManager::GetInstance()->SetCurrentSelectedButton(BootMenuManager::NEXT);
+			}
+			if (_event.key.code == sf::Keyboard::Enter)
+			{
+				BootMenuManager::GetInstance()->ExecuteButtonFuntion();
+			}
+		}
+	}
+	//Debug
+	if (_event.key.code == sf::Keyboard::F1)
+	{
+		DebugCustom::GetInstance()->SetDebugMode(!DebugCustom::GetInstance()->GetDebugState());
 	}
 }
 

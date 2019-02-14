@@ -10,10 +10,12 @@ public:
 	UIText(string _txt, unsigned int _size, sf::Vector2f _pos);
 	~UIText();
 
+	virtual sf::Drawable* GetDrawable() { return &mText; }
+
 	void UpdateText(string _txt); 
+
 	void SetSelected(bool _isSelected);
 	bool IsSelected();
-	virtual sf::Drawable* GetDrawable() { return &mText; }
 
 private: 
 	sf::Text mText;

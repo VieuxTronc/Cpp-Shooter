@@ -30,15 +30,15 @@ void BootMenuManager::InitBootMenu()
 {
 	GameWindow* pGamewindow = GameWindow::GetInstance();
 
-	UIText* pUITextPlay = new UIText("Play", 30.0f, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y));
+	UIText* pUITextPlay = new UIText("Play", 30, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y));
 	bootMenuEntityList.push_back(pUITextPlay);
 	bootMenuButtonList.push_back(pUITextPlay);
 
-	UIText* pUITextOptions = new UIText("Options", 30.0f, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 35.0f));
+	UIText* pUITextOptions = new UIText("Options", 30, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 35.0f));
 	bootMenuEntityList.push_back(pUITextOptions);
 	bootMenuButtonList.push_back(pUITextOptions);
 
-	UIText* pUITextQuit = new UIText("Quit", 30.0f, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 70.0f));
+	UIText* pUITextQuit = new UIText("Quit", 30, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 70.0f));
 	bootMenuEntityList.push_back(pUITextQuit);
 	bootMenuButtonList.push_back(pUITextQuit);
 
@@ -47,8 +47,6 @@ void BootMenuManager::InitBootMenu()
 
 void BootMenuManager::SetCurrentSelectedButton(ButtonSwitchDirection _direction)
 {
-	int i = GetCurrentSelectedButton();
-	DebugCustom::Log(to_string(i));
 	switch (_direction)
 	{
 	case BootMenuManager::NEXT:
@@ -60,23 +58,25 @@ void BootMenuManager::SetCurrentSelectedButton(ButtonSwitchDirection _direction)
 	default:
 		break;
 	}
-
 }
 
 void BootMenuManager::SetCurrentSelectedButton(int _id)
 {
 	if (_id < 0)
 		_id = bootMenuEntityList.size() - 1;
-
 	if (_id > bootMenuEntityList.size() - 1)
 		_id = 0;
 
+	bootMenuButtonList[_id]->SetSelected(true);
+	bootMenuButtonList[_id]->UpdateEntity();
+
 	for (size_t i = 0; i < bootMenuEntityList.size(); i++)
 	{
-		if(i == _id)
-		bootMenuButtonList[_id]->SetSelected(true);
-		else
-		bootMenuButtonList[_id]->SetSelected(false);
+		if (bootMenuButtonList[i]->IsSelected())
+		{
+			if(i != _id)
+			bootMenuButtonList[i]->SetSelected(false);
+		}
 	}
 }
 
@@ -89,11 +89,27 @@ int BootMenuManager::GetCurrentSelectedButton()
 		if (bootMenuButtonList[i]->IsSelected())
 		{
 			index = i;
-
-			if (index >= bootMenuEntityList.size())
-				return index =- 1;
 		}
 	}
-
 	return index;
+}
+
+void BootMenuManager::ExecuteButtonFuntion()
+{
+	int currentButton = GetCurrentSelectedButton(); 
+
+	switch (currentButton)
+	{
+	case 0:
+		GameManager::GetInstance()->SetGameState(GameManager::GAME);
+		return;
+	case 1:
+		DebugCustom::Log("No Options menu.");
+		return;
+	case 2:
+		GameWindow::GetInstance()->CloseWindow();
+		return;
+	default:
+		break;
+	}
 }

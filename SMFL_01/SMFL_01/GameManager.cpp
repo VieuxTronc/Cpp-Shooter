@@ -153,6 +153,7 @@ std::vector<Entity*> GameManager::GetCurrentEntityList()
 		return entitiesList;
 		break;
 	default:
+		return vector<Entity*>(0);
 		break;
 	}
 }

@@ -58,7 +58,7 @@ void Background::FadeBackground(float _dt, float _speed)
 		break;
 	}
 
-	mSprite.setColor(sf::Color(255, 255, 255, mSpriteAlpha));
+	mSprite.setColor(sf::Color(255, 255, 255, static_cast<int>(mSpriteAlpha)));
 }
 
 Background::~Background()

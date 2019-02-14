@@ -22,7 +22,10 @@ public:
 
 	void SetCurrentSelectedButton(ButtonSwitchDirection _direction); 
 	void SetCurrentSelectedButton(int _id); 
+
 	int GetCurrentSelectedButton(); 
+
+	void ExecuteButtonFuntion(); 
 
 private: 
 	static BootMenuManager *s_pInstance;

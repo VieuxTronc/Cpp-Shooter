@@ -13,10 +13,11 @@ UIText::UIText(string _txt, unsigned int _size, sf::Vector2f _pos)
 		mText = sf::Text(_txt, mFont, _size);
 		mTextString = _txt;
 		mSize = _size; 
-		mText.setPosition(_pos);
 		mPosition = _pos; 
 		mColor = sf::Color(255, 255, 255, 255);
-		mText.setFillColor(sf::Color(255, 255, 255, 255));
+
+		mText.setPosition(mPosition);
+		mText.setFillColor(mColor);
 	}
 }
 

@@ -31,6 +31,7 @@ void GameWindow::CreateWindow()
 {
 	window.create(sf::VideoMode(windowSize.x, windowSize.y), "");
 	window.setMouseCursorVisible(false);
+	window.setKeyRepeatEnabled(false);
 	mWindowMiddlePos = sf::Vector2f(windowSize.x / 2.0f, windowSize.y / 2.0f);
 
 	pGameManager = GameManager::GetInstance(); 
@@ -65,11 +66,14 @@ void GameWindow::UpdateWindow()
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 				window.close();
+
+			InputManager::GetInstance()->UpdateEvents(event);
 		}
 
 		if (window.hasFocus())
 		{
 			InputManager::GetInstance()->Update(dt.asSeconds());
+
 		}
 
 		// Clear screen
@@ -94,6 +98,5 @@ void GameWindow::UpdateWindow()
 
 void GameWindow::CloseWindow()
 {
-	//GameManager::GetInstance()->CleanList(GameManager::GetInstance()->GetCurrentEntityList());
 	window.close();
 }

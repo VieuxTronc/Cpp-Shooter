@@ -47,3 +47,9 @@ void DebugCustom::Error(std::string _msg)
 	cout << RED "[LOG] - " RESET << _msg << endl;
 }
 
+void DebugCustom::SetDebugMode(bool _isDebugMode)
+{
+	mIsDebugMode = _isDebugMode;
+	log(_isDebugMode);
+}
+
