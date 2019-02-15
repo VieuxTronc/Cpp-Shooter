@@ -7,11 +7,14 @@
 class UIText : public Entity
 {
 public:
-	UIText(string _txt, unsigned int _size, sf::Vector2f _pos);
+	UIText(string _txt, unsigned int _size);
 	~UIText();
 
-	virtual sf::Drawable* GetDrawable() { return &mText; }
+	sf::Drawable* GetDrawable() { return &mText; }
 
+	void SetEntityPosition(sf::Vector2f _pos) { mText.setPosition(_pos); }
+
+	sf::Vector2f GetTextSize() { return sf::Vector2f(mText.getLocalBounds().width, mText.getLocalBounds().height); }
 	void UpdateText(string _txt); 
 
 	void SetSelected(bool _isSelected);
@@ -19,10 +22,11 @@ public:
 
 private: 
 	sf::Text mText;
-	string mTextString; 
-	unsigned int mSize; 
-	bool mIsSelected; 
-	sf::Color mColor; 
 	sf::Font mFont; 
+	string mTextString; 
+	unsigned int mTextSize; 
+	sf::Color mTextColor; 
+
+	bool mIsSelected; 
 };
 

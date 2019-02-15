@@ -16,7 +16,7 @@ public:
 	void SetEntityID(int _id) { mEntityID = _id; }
 	int GetEntityID() { return mEntityID; }
 
-	void SetEntityPosition(sf::Vector2f _pos) { mPosition = _pos; }
+	virtual void SetEntityPosition(sf::Vector2f _pos) { mPosition = _pos; }
 	sf::Vector2f GetEntityPosition() { return mPosition; }
 
 	virtual sf::Drawable* GetDrawable() { return &mSprite; }

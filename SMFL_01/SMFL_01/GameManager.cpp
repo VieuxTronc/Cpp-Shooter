@@ -34,17 +34,6 @@ void GameManager::InitEntities()
 
 	//Boot menu 
 	BootMenuManager::GetInstance()->InitBootMenu();
-	//UIText* pUITextPlay = new UIText("Play", 30.0f, sf::Vector2f(GameWindow::GetInstance()->GetWindowMiddlePos().x - 35.0f, GameWindow::GetInstance()->GetWindowMiddlePos().y));
-	//bootMenuList.push_back(pUITextPlay);
-	//bootMenuTextList.push_back(pUITextPlay);
-	//
-	//UIText* pUITextOptions = new UIText("Options", 30.0f, sf::Vector2f(GameWindow::GetInstance()->GetWindowMiddlePos().x - 35.0f, GameWindow::GetInstance()->GetWindowMiddlePos().y + 35.0f));
-	//bootMenuList.push_back(pUITextOptions);
-	//bootMenuTextList.push_back(pUITextOptions);
-	//
-	//UIText* pUITextQuit = new UIText("Quit", 30.0f, sf::Vector2f(GameWindow::GetInstance()->GetWindowMiddlePos().x - 35.0f, GameWindow::GetInstance()->GetWindowMiddlePos().y + 70.0f));
-	//bootMenuList.push_back(pUITextQuit);
-	//bootMenuTextList.push_back(pUITextQuit);
 
 	//Game
 	Background* pBackground = new Background("../data/background.png", false, Background::FadeType::NONE);

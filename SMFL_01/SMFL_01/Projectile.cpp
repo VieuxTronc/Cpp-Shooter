@@ -11,6 +11,7 @@ Projectile::Projectile(sf::Vector2f _pos, std::string _spritePath, CollisionMode
 	mSprite.setColor(sf::Color(255, 255, 255, 0));
 	mCollisionMode = _colMode;
 	mSprite.setScale(sf::Vector2f(0.5f, 0.5f));
+	mSize = sf::Vector2f(mSize.x * mSprite.getScale().x, mSize.y * mSprite.getScale().y);
 	LaunchProjectile(sf::Vector2f(1.0f, 0.0f));
 }
 

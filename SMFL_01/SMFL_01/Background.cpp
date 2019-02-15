@@ -26,7 +26,10 @@ Background::Background(std::string _spritePath, bool _isFading, FadeType _type)
 
 void Background::UpdateEntity(float _dt)
 {
-	FadeBackground(_dt, 29.0f);
+	if (Background::IN || Background::OUT)
+	{
+		FadeBackground(_dt, 29.0f);
+	}
 }
 
 void Background::FadeBackground(float _dt, float _speed)

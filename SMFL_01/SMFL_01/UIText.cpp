@@ -2,7 +2,7 @@
 #include "UIText.h"
 #include "DebugCustom.h"
 
-UIText::UIText(string _txt, unsigned int _size, sf::Vector2f _pos)
+UIText::UIText(string _txt, unsigned int _size)
 {
 	if (!mFont.loadFromFile("../data/arial.ttf"))
 	{
@@ -12,12 +12,10 @@ UIText::UIText(string _txt, unsigned int _size, sf::Vector2f _pos)
 	{
 		mText = sf::Text(_txt, mFont, _size);
 		mTextString = _txt;
-		mSize = _size; 
-		mPosition = _pos; 
-		mColor = sf::Color(255, 255, 255, 255);
+		mTextSize = _size; 
+		mTextColor = sf::Color(255, 255, 255, 255);
 
-		mText.setPosition(mPosition);
-		mText.setFillColor(mColor);
+		mText.setFillColor(mTextColor);
 	}
 }
 
@@ -37,7 +35,7 @@ void UIText::SetSelected(bool _isSelected)
 	if (mIsSelected)
 		mText.setFillColor(sf::Color::Red);
 	else
-		mText.setFillColor(sf::Color(mColor));
+		mText.setFillColor(sf::Color(mTextColor));
 }
 
 bool UIText::IsSelected()
