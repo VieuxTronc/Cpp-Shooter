@@ -16,6 +16,6 @@ public:
 	bool GetDebugState() { return mIsDebugMode; }
 private:
 	static DebugCustom* s_pInstance; 
-	bool mIsDebugMode; 
+	bool mIsDebugMode = false; 
  };
 

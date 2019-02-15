@@ -39,6 +39,15 @@ void Player::UpdateEntity(float _dt)
 
 }
 
+void Player::UpdateDebugDrawable()
+{
+	mRectShape = sf::RectangleShape(mSize);
+	mRectShape.setPosition(mPosition);
+	mRectShape.setFillColor(sf::Color::Transparent);
+	mRectShape.setOutlineColor(sf::Color::Red);
+	mRectShape.setOutlineThickness(2.5f);
+}
+
 void Player::CheckPlayerBounds(sf::Vector2f _futurePos, sf::Vector2f _velocity)
 {
 	float maxY = GameWindow::GetInstance()->GetWindowSizef().y - mTexture.getSize().y;
@@ -63,6 +72,8 @@ void Player::MoveEntity(sf::Vector2f _inputVelocity, float _dt)
 	mSprite.setPosition(mPosition);
 
 	mRect = sf::FloatRect(mPosition, mSize);
+
+	UpdateDebugDrawable();
 }
 
 void Player::Fire(float _dt)

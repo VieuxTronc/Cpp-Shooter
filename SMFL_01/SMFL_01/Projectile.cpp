@@ -35,6 +35,13 @@ void Projectile::MoveEntity(float _dt)
 		mSprite.setPosition(mPosition);
 
 		mRect = sf::FloatRect(mPosition, mSize);
+
+		//Debug
+		mRectShape = sf::RectangleShape(mSize);
+		mRectShape.setPosition(mPosition);
+		mRectShape.setFillColor(sf::Color::Transparent);
+		mRectShape.setOutlineColor(sf::Color::Red);
+		mRectShape.setOutlineThickness(2.5f);
 	}
 }
 

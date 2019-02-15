@@ -84,9 +84,13 @@ void InputManager::UpdateEvents(sf::Event _event)
 		}
 	}
 	//Debug
-	if (_event.key.code == sf::Keyboard::F1)
+	if (_event.type == sf::Event::KeyPressed)
 	{
-		DebugCustom::GetInstance()->SetDebugMode(!DebugCustom::GetInstance()->GetDebugState());
+		if (_event.key.code == sf::Keyboard::F1)
+		{
+			DebugCustom::Log("Debug toggle");
+			DebugCustom::GetInstance()->SetDebugMode(!DebugCustom::GetInstance()->GetDebugState());
+		}
 	}
 }
 

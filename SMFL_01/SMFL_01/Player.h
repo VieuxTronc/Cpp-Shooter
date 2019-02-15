@@ -8,6 +8,7 @@ public:
 	static Player* GetInstance(); 
 	void InitPlayer(sf::Vector2f _pos, std::string _spritePath);
 	void UpdateEntity(float _dt);
+	void UpdateDebugDrawable();
 	void CheckPlayerBounds(sf::Vector2f _futurePos, sf::Vector2f _velocity);
 	void MoveEntity(sf::Vector2f _velocity, float _dt);
 	void Fire(float _dt);

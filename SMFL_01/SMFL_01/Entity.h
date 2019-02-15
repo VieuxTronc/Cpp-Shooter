@@ -20,6 +20,7 @@ public:
 	sf::Vector2f GetEntityPosition() { return mPosition; }
 
 	virtual sf::Drawable* GetDrawable() { return &mSprite; }
+	virtual sf::Drawable* GetDebugDrawable() { return &mRectShape; }
 
 	void SetEntityRotation(float _angle);
 	float GetEntityRotation() { return mAngle; }
@@ -32,6 +33,7 @@ public:
 
 	virtual void UpdateEntity(float _dt) {};
 	virtual void UpdateEntity() {};
+	virtual void UpdateDebugDrawable() {};
 	
 	virtual bool IsEntityAlive() { return mIsAlive; }
 
@@ -53,6 +55,7 @@ protected:
 	sf::Vector2f mVelocity;
 	sf::Vector2f mSpawnPosition;
 	sf::FloatRect mRect;
+	sf::RectangleShape mRectShape;
 	sf::Vector2f mSize;
 	string mTag; 
 	float mAngle;
