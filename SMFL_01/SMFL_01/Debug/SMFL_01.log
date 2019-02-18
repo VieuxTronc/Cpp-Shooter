@@ -1,2 +1,20 @@
-﻿  GameManager.cpp
+﻿  pch.cpp
+  Background.cpp
+  BootMenuManager.cpp
+d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(64): warning C4018: '>': signed/unsigned mismatch
+  DebugCustom.cpp
+  Enemy.cpp
+  Entity.cpp
+  FormulaOne.cpp
+  GameManager.cpp
+  GameWindow.cpp
+  InputManager.cpp
+  Manager.cpp
+  MonsterTruck.cpp
+  Player.cpp
+  Projectile.cpp
+  main.cpp
+  UIText.cpp
+  Vehicule.cpp
+  Generating Code...
   SMFL_01.vcxproj -> D:\DEV\C++\Shooter\Shooter\SMFL_01\Debug\Shooter.exe

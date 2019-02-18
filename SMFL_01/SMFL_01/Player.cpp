@@ -29,9 +29,7 @@ void Player::InitPlayer(sf::Vector2f _pos, std::string _spritePath)
 	_pos.x = (GameWindow::GetInstance()->GetWindowSizef().x / 4) - mTexture.getSize().x;
 	_pos.y = (GameWindow::GetInstance()->GetWindowSizef().y / 2) - mTexture.getSize().y;
 
-	CreateEntity(_pos, _spritePath);
-
-	mVelocity = sf::Vector2f(1.0f, 1.0f);
+	CreateEntity(_spritePath, _pos, sf::Vector2f(1.0f, 1.0f));
 }
 
 void Player::UpdateEntity(float _dt)
@@ -41,11 +39,11 @@ void Player::UpdateEntity(float _dt)
 
 void Player::UpdateDebugDrawable()
 {
-	mRectShape = sf::RectangleShape(mSize);
-	mRectShape.setPosition(mPosition);
-	mRectShape.setFillColor(sf::Color::Transparent);
-	mRectShape.setOutlineColor(sf::Color::Red);
-	mRectShape.setOutlineThickness(2.5f);
+	mDebugRectShape = sf::RectangleShape(mSize);
+	mDebugRectShape.setPosition(mPosition);
+	mDebugRectShape.setFillColor(sf::Color::Transparent);
+	mDebugRectShape.setOutlineColor(sf::Color::Red);
+	mDebugRectShape.setOutlineThickness(2.5f);
 }
 
 void Player::CheckPlayerBounds(sf::Vector2f _futurePos, sf::Vector2f _velocity)

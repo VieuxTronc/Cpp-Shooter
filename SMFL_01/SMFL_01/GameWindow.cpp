@@ -35,8 +35,9 @@ void GameWindow::CreateWindow()
 	mWindowMiddlePos = sf::Vector2f(windowSize.x / 2.0f, windowSize.y / 2.0f);
 
 	pGameManager = GameManager::GetInstance(); 
-	pGameManager->InitEntities();
-	pGameManager->SetGameState(GameManager::SPLASH_SCREEN);
+	//pGameManager->InitEntities();
+	pGameManager->InitGame();
+	//pGameManager->SetGameState(GameManager::SPLASH_SCREEN);
 
 	//pBootMenuManager = BootMenuManager::GetInstance();
 

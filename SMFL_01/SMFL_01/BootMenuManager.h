@@ -18,8 +18,6 @@ public:
 
 	void InitBootMenu(); 
 
-	std::vector<Entity*> GetBootMenuEntityList() { return bootMenuEntityList; }
-
 	void SetCurrentSelectedButton(ButtonSwitchDirection _direction); 
 	void SetCurrentSelectedButton(int _id); 
 
@@ -29,7 +27,6 @@ public:
 
 private: 
 	static BootMenuManager *s_pInstance;
-	std::vector<Entity*> bootMenuEntityList;
 	std::vector<UIText*> bootMenuButtonList;
 };
 

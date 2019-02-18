@@ -13,7 +13,7 @@ Background::Background(std::string _spritePath, bool _isFading, FadeType _type)
 	sf::Vector2f wSize = pGameWindow->GetWindowSizef();
 	sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f);
 
-	CreateEntity(pos, _spritePath);
+	CreateEntity(_spritePath, pos);
 
 	float sizeRatioX = wSize.x / mTexture.getSize().x;
 	float sizeRatioY = wSize.y / mTexture.getSize().y;

@@ -10,7 +10,9 @@ public:
 	Entity();
 	~Entity();
 
-	void CreateEntity(sf::Vector2f _pos, std::string _spritePath); 
+	void CreateEntity(std::string _spritePath, sf::Vector2f _pos);
+	void CreateEntity(std::string _spritePath, sf::Vector2f _pos, sf::Vector2f _velocity);
+
 	virtual void DestroyEntity() {};
 
 	void SetEntityID(int _id) { mEntityID = _id; }
@@ -20,7 +22,7 @@ public:
 	sf::Vector2f GetEntityPosition() { return mPosition; }
 
 	virtual sf::Drawable* GetDrawable() { return &mSprite; }
-	virtual sf::Drawable* GetDebugDrawable() { return &mRectShape; }
+	virtual sf::Drawable* GetDebugDrawable() { return &mDebugRectShape; }
 
 	void SetEntityRotation(float _angle);
 	float GetEntityRotation() { return mAngle; }
@@ -55,7 +57,7 @@ protected:
 	sf::Vector2f mVelocity;
 	sf::Vector2f mSpawnPosition;
 	sf::FloatRect mRect;
-	sf::RectangleShape mRectShape;
+	sf::RectangleShape mDebugRectShape;
 	sf::Vector2f mSize;
 	string mTag; 
 	float mAngle;

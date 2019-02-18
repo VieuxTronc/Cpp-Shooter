@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "UIText.h"
 #include "DebugCustom.h"
+#include "GameManager.h"
 
 UIText::UIText(string _txt, unsigned int _size, sf::Vector2f _pos)
 {
@@ -19,6 +20,8 @@ UIText::UIText(string _txt, unsigned int _size, sf::Vector2f _pos)
 		mText.setPosition(mPosition);
 		mText.setFillColor(mColor);
 	}
+
+	GameManager::GetInstance()->RegisterEntity(this);
 }
 
 UIText::~UIText()

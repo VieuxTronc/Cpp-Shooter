@@ -31,15 +31,12 @@ void BootMenuManager::InitBootMenu()
 	GameWindow* pGamewindow = GameWindow::GetInstance();
 
 	UIText* pUITextPlay = new UIText("Play", 30, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y));
-	bootMenuEntityList.push_back(pUITextPlay);
 	bootMenuButtonList.push_back(pUITextPlay);
 
 	UIText* pUITextOptions = new UIText("Options", 30, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 35.0f));
-	bootMenuEntityList.push_back(pUITextOptions);
 	bootMenuButtonList.push_back(pUITextOptions);
 
 	UIText* pUITextQuit = new UIText("Quit", 30, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 70.0f));
-	bootMenuEntityList.push_back(pUITextQuit);
 	bootMenuButtonList.push_back(pUITextQuit);
 
 	SetCurrentSelectedButton(0);
@@ -63,14 +60,14 @@ void BootMenuManager::SetCurrentSelectedButton(ButtonSwitchDirection _direction)
 void BootMenuManager::SetCurrentSelectedButton(int _id)
 {
 	if (_id < 0)
-		_id = bootMenuEntityList.size() - 1;
-	if (_id > bootMenuEntityList.size() - 1)
+		_id = bootMenuButtonList.size() - 1;
+	if (_id > bootMenuButtonList.size() - 1)
 		_id = 0;
 
 	bootMenuButtonList[_id]->SetSelected(true);
 	bootMenuButtonList[_id]->UpdateEntity();
 
-	for (size_t i = 0; i < bootMenuEntityList.size(); i++)
+	for (size_t i = 0; i < bootMenuButtonList.size(); i++)
 	{
 		if (bootMenuButtonList[i]->IsSelected())
 		{
@@ -84,7 +81,7 @@ int BootMenuManager::GetCurrentSelectedButton()
 {
 	int index; 
 
-	for (size_t i = 0; i < bootMenuEntityList.size(); i++)
+	for (size_t i = 0; i < bootMenuButtonList.size(); i++)
 	{
 		if (bootMenuButtonList[i]->IsSelected())
 		{
