@@ -5,6 +5,7 @@
 #include "DebugCustom.h"
 #include "UIText.h"
 #include "BootMenuManager.h"
+#include "SplashScreenManager.h"
 
 GameManager* GameManager::s_pInstance = nullptr;
 
@@ -28,7 +29,7 @@ GameManager* GameManager::GetInstance()
 
 void GameManager::InitGame()
 {
-	Background* pSplash = new Background("../data/splash.jpg", true, Background::FadeType::IN);
+	SplashScreenManager::GetInstance()->InitSplashScreen();
 }
 
 void GameManager::InitLevel() //Will need int as a parameter to init the proper level. 
@@ -38,7 +39,6 @@ void GameManager::InitLevel() //Will need int as a parameter to init the proper 
 	Player::GetInstance()->InitPlayer(sf::Vector2f(0.0f, 0.0f), "../data/ship.png");
 
 	Enemy* pEnemy = new Enemy(sf::Vector2f(100.0f, 250.0f), "../data/ship.png");
-	enemiesList.push_back(pEnemy);
 }
 
 
@@ -139,11 +139,16 @@ std::vector<Entity*> GameManager::GetCurrentEnemyList()
 {
 	if (GameManager::GAME)
 	{
-		return enemiesList; 
+		return mCurrentEnemyList; 
 	}
 }
 
 void GameManager::RegisterEntity(Entity* _entity)
 {
 	mCurrentEntityList.push_back(_entity);
+}
+
+void GameManager::RegisterEnemy(Entity * _entity)
+{
+	mCurrentEnemyList.push_back(_entity);
 }

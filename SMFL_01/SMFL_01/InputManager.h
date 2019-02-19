@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Manager.h"
 #include "Player.h"
 #include "GameWindow.h"
 
-class InputManager : public Manager
+class InputManager
 {
 public:
 	static InputManager* GetInstance();

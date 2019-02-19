@@ -62,6 +62,7 @@ void Projectile::CheckEntityCollision()
 			if (mRect.intersects(tempEnemyRect) == true)
 			{
 				DebugCustom::Log("Projectile Intersecting with something");
+				enemyList[i]->ApplyDamage(this);
 				mIsAlive = false;
 			}
 		}

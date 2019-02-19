@@ -10,8 +10,7 @@ public:
 	Entity();
 	~Entity();
 
-	void CreateEntity(std::string _spritePath, sf::Vector2f _pos);
-	void CreateEntity(std::string _spritePath, sf::Vector2f _pos, sf::Vector2f _velocity);
+	void CreateEntity(std::string _spritePath, sf::Vector2f _pos, sf::Vector2f _velocity = sf::Vector2f(0.0f, 0.0f));
 
 	virtual void DestroyEntity() {};
 
@@ -37,6 +36,7 @@ public:
 	virtual void UpdateEntity() {};
 	virtual void UpdateDebugDrawable() {};
 	
+	virtual void CheckIfEntityIsAlive() {};
 	virtual bool IsEntityAlive() { return mIsAlive; }
 
 	void SetEntityLifeTime(float _newTime) { mLifeTime = _newTime; }
@@ -49,6 +49,9 @@ public:
 
 	void SetEntityTag(string _tag) { mTag = _tag; }
 	string GetEntityTag() { return mTag; }
+
+	virtual void ApplyDamage(Entity* _projectile) {};
+	virtual float GetProjectileDamage() { return mDamage; }
 
 protected:
 	sf::Texture mTexture;
@@ -65,5 +68,9 @@ protected:
 	float mSpeed = 135.0f; 
 	float mLifeTime;
 	int mEntityID; 
+
+	//May need some kind of "livingComponent"
+	float mLifePoints = 100.0f;
+	float mDamage = 10.0f; 
 };
 

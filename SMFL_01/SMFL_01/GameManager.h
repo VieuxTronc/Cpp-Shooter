@@ -4,10 +4,9 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Background.h"
-#include "Manager.h"
 #include "UIText.h"
 
-class GameManager : public Manager
+class GameManager
 {
 public:
 	GameManager();
@@ -35,12 +34,13 @@ public:
 	std::vector<Entity*> GetCurrentEnemyList(); 
 
 	void RegisterEntity(Entity* _entity);
+	void RegisterEnemy(Entity* _entity);
 
 private:
 	static GameManager* s_pInstance; 
 
 	//Enemies -> no need for that, find another way to sort enemies out of the mCurrentEntityList
-	std::vector<Entity*> enemiesList;
+	std::vector<Entity*> mCurrentEnemyList;
 
 	std::vector<Entity*> mCurrentEntityList;
 	

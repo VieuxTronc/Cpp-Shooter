@@ -15,7 +15,6 @@ public:
 	void CheckEntityCollision();
 	void UpdateEntity(float _dt);
 
-
 private: 
 	CollisionMode mCollisionMode;
 	float mSpeed = 350.0f;
