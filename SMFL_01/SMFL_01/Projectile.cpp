@@ -7,7 +7,7 @@
 
 Projectile::Projectile(sf::Vector2f _pos, std::string _spritePath, CollisionMode _colMode)
 {
-	CreateEntity(_pos, _spritePath);
+	CreateEntity(_spritePath, _pos);
 	mSprite.setColor(sf::Color(255, 255, 255, 0));
 	mCollisionMode = _colMode;
 	mSprite.setScale(sf::Vector2f(0.5f, 0.5f));
@@ -38,11 +38,11 @@ void Projectile::MoveEntity(float _dt)
 		mRect = sf::FloatRect(mPosition, mSize);
 
 		//Debug
-		mRectShape = sf::RectangleShape(mSize);
-		mRectShape.setPosition(mPosition);
-		mRectShape.setFillColor(sf::Color::Transparent);
-		mRectShape.setOutlineColor(sf::Color::Red);
-		mRectShape.setOutlineThickness(2.5f);
+		mDebugRectShape = sf::RectangleShape(mSize);
+		mDebugRectShape.setPosition(mPosition);
+		mDebugRectShape.setFillColor(sf::Color::Transparent);
+		mDebugRectShape.setOutlineColor(sf::Color::Red);
+		mDebugRectShape.setOutlineThickness(2.5f);
 	}
 }
 
@@ -63,6 +63,7 @@ void Projectile::CheckEntityCollision()
 			if (mRect.intersects(tempEnemyRect) == true)
 			{
 				DebugCustom::Log("Projectile Intersecting with something");
+				enemyList[i]->ApplyDamage(this);
 				mIsAlive = false;
 			}
 		}

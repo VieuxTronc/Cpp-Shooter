@@ -5,6 +5,7 @@
 #include "DebugCustom.h"
 #include "UIText.h"
 #include "BootMenuManager.h"
+#include "SplashScreenManager.h"
 
 GameManager* GameManager::s_pInstance = nullptr;
 
@@ -26,74 +27,55 @@ GameManager* GameManager::GetInstance()
 	return s_pInstance;
 }
 
-void GameManager::InitEntities()
+void GameManager::InitGame()
 {
-	//Splash Screen
-	Background* pSplash = new Background("../data/splash.jpg", true, Background::FadeType::IN);
-	splashList.push_back(pSplash);
+	SplashScreenManager::GetInstance()->InitSplashScreen();
+}
 
-	//Boot menu 
-	BootMenuManager::GetInstance()->InitBootMenu();
-
-	//Game
+void GameManager::InitLevel() //Will need int as a parameter to init the proper level. 
+{
 	Background* pBackground = new Background("../data/background.png", false, Background::FadeType::NONE);
-	entitiesList.push_back(pBackground);
 
 	Player::GetInstance()->InitPlayer(sf::Vector2f(0.0f, 0.0f), "../data/ship.png");
-	entitiesList.push_back(Player::GetInstance());
 
 	Enemy* pEnemy = new Enemy(sf::Vector2f(100.0f, 250.0f), "../data/ship.png");
-	entitiesList.push_back(pEnemy);
-	enemiesList.push_back(pEnemy);
-	
-	DebugCustom::Log("Entities Initiated.");
-} 
+}
+
 
 void GameManager::UpdateEntities(float _dt)
 {
-	switch (mGameState)
+	CleanCurrentEntityList(); 
+
+	for (size_t i = 0; i < mCurrentEntityList.size(); i++)
 	{
-	case GameManager::SPLASH_SCREEN:
-		for (size_t i = 0; i < splashList.size(); i++)
-		{
-			splashList[i]->UpdateEntity(_dt);
-			splashList[i]->SetEntityID(i);
-		}
-		break;
-	case GameManager::BOOT_MENU:
-		for (size_t i = 0; i < bootMenuList.size(); i++)
-		{
-			BootMenuManager::GetInstance()->GetBootMenuEntityList()[i]->UpdateEntity(_dt);
-			BootMenuManager::GetInstance()->GetBootMenuEntityList()[i]->SetEntityID(i);
-		}
-		break;
-	case GameManager::GAME:
-		CleanEntityList();
-		for (size_t i = 0; i < entitiesList.size(); i++)
-		{
-			entitiesList[i]->UpdateEntity(_dt);
-			entitiesList[i]->SetEntityID(i);
-		}
-		break;
-	default:
-		break;
+		mCurrentEntityList[i]->UpdateEntity(_dt);
+		mCurrentEntityList[i]->SetEntityID(i);
 	}
 }
 
-void GameManager::CleanEntityList()
+void GameManager::CleanCurrentEntityList()
 {
-	for (size_t i = 0; i < entitiesList.size(); i++)
+	for (size_t i = 0; i < mCurrentEntityList.size(); i++)
 	{
-		if (entitiesList[i]->IsEntityAlive() == false)
+		if (mCurrentEntityList[i]->IsEntityAlive() == false)
 		{
-			Entity* entityToDelete = entitiesList[i];
+			Entity* entityToDelete = mCurrentEntityList[i];
 			int idToDelete = entityToDelete->GetEntityID();
 			
 			DebugCustom::Log("Entity will be removed");
 
 			delete entityToDelete;
-			entitiesList.erase(entitiesList.begin() + idToDelete);
+			mCurrentEntityList.erase(mCurrentEntityList.begin() + idToDelete);
 		}
+	}
+}
+
+void GameManager::FlushCurrentEntities()
+{
+	for (size_t i = 0; i < mCurrentEntityList.size(); i++)
+	{
+		delete mCurrentEntityList[i];
+		mCurrentEntityList.erase(mCurrentEntityList.begin() + i);
 	}
 }
 
@@ -116,7 +98,6 @@ void GameManager::SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int 
 			break;
 		case GameManager::PROJECTILE:
 			Projectile* pProjectile = new Projectile(_pos, "../data/pokeball.png", Projectile::CollisionMode::ENEMY);
-			entitiesList.push_back(pProjectile);
 			DebugCustom::Log("Spawned a projectile");
 			break;
 		}
@@ -125,32 +106,49 @@ void GameManager::SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int 
 
 void GameManager::SetGameState(GameState _state)
 {
+	FlushCurrentEntities(); 
+
+	switch (_state)
+	{
+		case GameManager::SPLASH_SCREEN:
+		{
+			Background* pSplash = new Background("../data/splash.jpg", true, Background::FadeType::IN);
+			break;
+		}
+		case GameManager::BOOT_MENU:
+		{
+			BootMenuManager::GetInstance()->InitBootMenu();
+			break;
+		}
+		case GameManager::GAME:
+		{
+			InitLevel();
+			break;
+		}
+	}
+
 	mGameState = _state;
 }
 
 std::vector<Entity*> GameManager::GetCurrentEntityList()
 {
-	switch (mGameState)
-	{
-	case GameManager::SPLASH_SCREEN:
-		return splashList; 
-		break;
-	case GameManager::BOOT_MENU:
-		return BootMenuManager::GetInstance()->GetBootMenuEntityList();
-		break;
-	case GameManager::GAME:
-		return entitiesList;
-		break;
-	default:
-		return vector<Entity*>(0);
-		break;
-	}
+	return mCurrentEntityList;
 }
 
 std::vector<Entity*> GameManager::GetCurrentEnemyList()
 {
 	if (GameManager::GAME)
 	{
-		return enemiesList; 
+		return mCurrentEnemyList; 
 	}
+}
+
+void GameManager::RegisterEntity(Entity* _entity)
+{
+	mCurrentEntityList.push_back(_entity);
+}
+
+void GameManager::RegisterEnemy(Entity * _entity)
+{
+	mCurrentEnemyList.push_back(_entity);
 }

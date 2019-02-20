@@ -20,5 +20,6 @@ private:
 	float mSpeed = 250.0f;
 	float mFireRate = 0.25f;
 	float mFireTimer = mFireRate;
+	float mLifePoints = 100; 
 };
 

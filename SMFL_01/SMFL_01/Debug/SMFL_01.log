@@ -1,2 +1,15 @@
-﻿  UIText.cpp
-  SMFL_01.vcxproj -> D:\Dev\C++\Shooter\Shooter\SMFL_01\Debug\Shooter.exe
+﻿  Background.cpp
+  BootMenuManager.cpp
+d:\dev\c++\shooter\shooter\smfl_01\smfl_01\bootmenumanager.cpp(64): warning C4018: '>': signed/unsigned mismatch
+  Enemy.cpp
+  Entity.cpp
+  EntityFactory.cpp
+  GameManager.cpp
+  GameWindow.cpp
+  InputManager.cpp
+  Player.cpp
+  Projectile.cpp
+  UIText.cpp
+  main.cpp
+  Generating Code...
+  SMFL_01.vcxproj -> D:\DEV\C++\Shooter\Shooter\SMFL_01\Debug\Shooter.exe

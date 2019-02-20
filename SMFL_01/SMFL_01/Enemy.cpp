@@ -1,18 +1,20 @@
-#include "pch.h"
 #include "Enemy.h"
 #include <SFML/Graphics.hpp>
+#include "pch.h"
 #include "GameWindow.h"
 #include "DebugCustom.h"
+#include "Projectile.h"
+
+Enemy::Enemy(sf::Vector2f _pos, std::string _spritePath)
+{
+	CreateEntity(_spritePath, sf::Vector2f(GameWindow::GetInstance()->GetWindowSizef().x - 350.0f, GameWindow::GetInstance()->GetWindowSizef().y / 2.0f), sf::Vector2f(1.0f, 1.0f));
+
+	GameManager::GetInstance()->RegisterEnemy(this);
+}
 
 Enemy::Enemy()
 {
 
-}
-
-Enemy::Enemy(sf::Vector2f _pos, std::string _spritePath)
-{
-	CreateEntity(sf::Vector2f(GameWindow::GetInstance()->GetWindowSizef().x - 350.0f, GameWindow::GetInstance()->GetWindowSizef().y / 2.0f), _spritePath);
-	mVelocity = sf::Vector2f(1.0f, 1.0f);
 }
 
 Enemy::~Enemy()
@@ -51,10 +53,30 @@ void Enemy::UpdateEntity(float _dt)
 
 	mRect = sf::FloatRect(mPosition, mSize);
 
-	//Debug
-	mRectShape = sf::RectangleShape(mSize);
-	mRectShape.setPosition(mPosition);
-	mRectShape.setFillColor(sf::Color::Transparent);
-	mRectShape.setOutlineColor(sf::Color::Red);
-	mRectShape.setOutlineThickness(2.5f);
+	GetDebugDrawable(); 
+
+	CheckIfEntityIsAlive(); 
+}
+
+void Enemy::UpdateDebugDrawable()
+{
+	mDebugRectShape = sf::RectangleShape(mSize);
+	mDebugRectShape.setPosition(mPosition);
+	mDebugRectShape.setFillColor(sf::Color::Transparent);
+	mDebugRectShape.setOutlineColor(sf::Color::Red);
+	mDebugRectShape.setOutlineThickness(2.5f);
+}
+
+void Enemy::ApplyDamage(Entity * _projectile)
+{
+	mLifePoints -= _projectile->GetProjectileDamage(); 
+	//DebugCustom::GetInstance()->Log(std::to_string(mLifePoints));
+}
+
+void Enemy::CheckIfEntityIsAlive()
+{
+	if (mLifePoints <= 0)
+	{
+		mIsAlive = false; 
+	}
 }

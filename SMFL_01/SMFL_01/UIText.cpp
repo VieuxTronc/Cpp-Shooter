@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "UIText.h"
 #include "DebugCustom.h"
+#include "GameManager.h"
 
 UIText::UIText(string _txt, unsigned int _size)
 {
@@ -17,6 +18,8 @@ UIText::UIText(string _txt, unsigned int _size)
 
 		mText.setFillColor(mTextColor);
 	}
+
+	GameManager::GetInstance()->RegisterEntity(this);
 }
 
 UIText::~UIText()

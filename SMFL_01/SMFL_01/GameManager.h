@@ -4,10 +4,9 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Background.h"
-#include "Manager.h"
 #include "UIText.h"
 
-class GameManager : public Manager
+class GameManager
 {
 public:
 	GameManager();
@@ -15,13 +14,17 @@ public:
 
 	static GameManager* GetInstance();
 
-	void InitEntities(); 
+	void InitGame(); 
+	void InitLevel();
+
 	void UpdateEntities(float _dt);
-	void CleanEntityList(); 
+
+	void CleanCurrentEntityList(); 
+	void FlushCurrentEntities();
 	//void RemoveEntityFromList(int _id);
 
-	enum EntityType {PLAYER, ENEMY, PROJECTILE};
-	void SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int _number);
+	enum EntityType {PLAYER, ENEMY, PROJECTILE}; // Need entity factory ! 
+	void SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int _number); // Need entity factory ! 
 
 	enum GameState {SPLASH_SCREEN, BOOT_MENU, GAME};
 	void SetGameState(GameState _state);
@@ -29,18 +32,17 @@ public:
 
 	std::vector<Entity*> GetCurrentEntityList(); 
 	std::vector<Entity*> GetCurrentEnemyList(); 
-	void RegisterBootMenuEntity(Entity* _entity) { bootMenuList.push_back(_entity); }
+
+	void RegisterEntity(Entity* _entity);
+	void RegisterEnemy(Entity* _entity);
 
 private:
 	static GameManager* s_pInstance; 
-	//Splashes
-	std::vector<Entity*> splashList;
-	//Boot menu 
-	std::vector<Entity*> bootMenuList;
-	std::vector<UIText*> bootMenuTextList;
-	//Game
-	std::vector<Entity*> entitiesList;
-	std::vector<Entity*> enemiesList;
+
+	//Enemies -> no need for that, find another way to sort enemies out of the mCurrentEntityList
+	std::vector<Entity*> mCurrentEnemyList;
+
+	std::vector<Entity*> mCurrentEntityList;
 	
 	GameState mGameState;
 	EntityType mEntityType; 

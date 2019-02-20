@@ -10,7 +10,8 @@ public:
 	Entity();
 	~Entity();
 
-	void CreateEntity(sf::Vector2f _pos, std::string _spritePath); 
+	void CreateEntity(std::string _spritePath, sf::Vector2f _pos, sf::Vector2f _velocity = sf::Vector2f(0.0f, 0.0f));
+
 	virtual void DestroyEntity() {};
 
 	void SetEntityID(int _id) { mEntityID = _id; }
@@ -20,7 +21,7 @@ public:
 	sf::Vector2f GetEntityPosition() { return mPosition; }
 
 	virtual sf::Drawable* GetDrawable() { return &mSprite; }
-	virtual sf::Drawable* GetDebugDrawable() { return &mRectShape; }
+	virtual sf::Drawable* GetDebugDrawable() { return &mDebugRectShape; }
 
 	void SetEntityRotation(float _angle);
 	float GetEntityRotation() { return mAngle; }
@@ -35,6 +36,7 @@ public:
 	virtual void UpdateEntity() {};
 	virtual void UpdateDebugDrawable() {};
 	
+	virtual void CheckIfEntityIsAlive() {};
 	virtual bool IsEntityAlive() { return mIsAlive; }
 
 	void SetEntityLifeTime(float _newTime) { mLifeTime = _newTime; }
@@ -48,6 +50,9 @@ public:
 	void SetEntityTag(string _tag) { mTag = _tag; }
 	string GetEntityTag() { return mTag; }
 
+	virtual void ApplyDamage(Entity* _projectile) {};
+	virtual float GetProjectileDamage() { return mDamage; }
+
 protected:
 	sf::Texture mTexture;
 	sf::Sprite mSprite;
@@ -55,7 +60,7 @@ protected:
 	sf::Vector2f mVelocity;
 	sf::Vector2f mSpawnPosition;
 	sf::FloatRect mRect;
-	sf::RectangleShape mRectShape;
+	sf::RectangleShape mDebugRectShape;
 	sf::Vector2f mSize;
 	string mTag; 
 	float mAngle;
@@ -63,5 +68,9 @@ protected:
 	float mSpeed = 135.0f; 
 	float mLifeTime;
 	int mEntityID; 
+
+	//May need some kind of "livingComponent"
+	float mLifePoints = 100.0f;
+	float mDamage = 10.0f; 
 };
 

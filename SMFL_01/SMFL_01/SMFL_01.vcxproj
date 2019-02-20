@@ -166,15 +166,16 @@
     <ClInclude Include="DebugCustom.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="FormulaOne.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Manager.h" />
     <ClInclude Include="MonsterTruck.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="SplashScreenManager.h" />
     <ClInclude Include="UIText.h" />
     <ClInclude Include="Vehicule.h" />
   </ItemGroup>
@@ -184,11 +185,11 @@
     <ClCompile Include="DebugCustom.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="FormulaOne.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Manager.cpp" />
     <ClCompile Include="MonsterTruck.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -199,6 +200,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SplashScreenManager.cpp" />
     <ClCompile Include="UIText.cpp" />
     <ClCompile Include="Vehicule.cpp" />
   </ItemGroup>
