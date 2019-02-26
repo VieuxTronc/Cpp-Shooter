@@ -6,6 +6,7 @@
 #include "UIText.h"
 #include "BootMenuManager.h"
 #include "SplashScreenManager.h"
+#include "Loader.h"
 
 GameManager* GameManager::s_pInstance = nullptr;
 
@@ -30,6 +31,7 @@ GameManager* GameManager::GetInstance()
 void GameManager::InitGame()
 {
 	SplashScreenManager::GetInstance()->InitSplashScreen();
+	Loader::LoadDataFromFile(Loader::GetInstance()->PlayerConfig, "[TEST]");
 }
 
 void GameManager::InitLevel() //Will need int as a parameter to init the proper level. 

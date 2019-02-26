@@ -171,6 +171,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="MonsterTruck.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Loader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MonsterTruck.cpp" />
     <ClCompile Include="pch.cpp">

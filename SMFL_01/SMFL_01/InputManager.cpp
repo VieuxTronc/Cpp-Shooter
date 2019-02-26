@@ -91,6 +91,10 @@ void InputManager::UpdateEvents(sf::Event _event)
 			DebugCustom::Log("Debug toggle");
 			DebugCustom::GetInstance()->SetDebugMode(!DebugCustom::GetInstance()->GetDebugState());
 		}
+		if (_event.key.code == sf::Keyboard::F2)
+		{
+
+		}
 	}
 }
 

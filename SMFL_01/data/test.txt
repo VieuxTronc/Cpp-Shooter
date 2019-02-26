@@ -1,0 +1,5 @@
+[TEST] = "4.0f"
+[BLABLA] = "BLAHFDLKJSNG"
+[POUET] = "gfdsdfgsdfg"
+[TEST2] = "2651651.2f"
+[????] = "4"

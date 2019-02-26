@@ -53,19 +53,19 @@ void Enemy::UpdateEntity(float _dt)
 
 	mRect = sf::FloatRect(mPosition, mSize);
 
-	GetDebugDrawable(); 
+	UpdateDebugDrawable();
 
 	CheckIfEntityIsAlive(); 
 }
 
-void Enemy::UpdateDebugDrawable()
-{
-	mDebugRectShape = sf::RectangleShape(mSize);
-	mDebugRectShape.setPosition(mPosition);
-	mDebugRectShape.setFillColor(sf::Color::Transparent);
-	mDebugRectShape.setOutlineColor(sf::Color::Red);
-	mDebugRectShape.setOutlineThickness(2.5f);
-}
+//void Enemy::UpdateDebugDrawable()
+//{
+//	mDebugRectShape = sf::RectangleShape(mSize);
+//	mDebugRectShape.setPosition(mPosition);
+//	mDebugRectShape.setFillColor(sf::Color::Transparent);
+//	mDebugRectShape.setOutlineColor(sf::Color::Red);
+//	mDebugRectShape.setOutlineThickness(2.5f);
+//}
 
 void Enemy::ApplyDamage(Entity * _projectile)
 {
@@ -77,5 +77,6 @@ void Enemy::CheckIfEntityIsAlive()
 	if (mLifePoints <= 0)
 	{
 		mIsAlive = false; 
+		//GameManager::GetInstance()->RemoveEntityFromList(GameManager::GetInstance()->GetCurrentEnemyList(), mEntityID);
 	}
 }

@@ -22,6 +22,8 @@ Background::Background(std::string _spritePath, bool _isFading, FadeType _type)
 	mSprite.setPosition(mPosition);
 
 	mFadeType = _type;
+
+	UpdateDebugDrawable();
 }
 
 void Background::UpdateEntity(float _dt)

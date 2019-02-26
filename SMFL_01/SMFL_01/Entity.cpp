@@ -26,6 +26,13 @@ void Entity::CreateEntity(std::string _spritePath, sf::Vector2f _pos, sf::Vector
 
 	mRect = sf::FloatRect(mPosition, mSize);
 
+	//Init debug rectangle shape
+	mDebugRectShape = sf::RectangleShape(mSize);
+	mDebugRectShape.setFillColor(sf::Color::Transparent);
+	mDebugRectShape.setOutlineColor(sf::Color::Red);
+	mDebugRectShape.setOutlineThickness(2.5f);
+
+	//Register entity into game manager
 	GameManager::GetInstance()->RegisterEntity(this);
 
 	DebugCustom::Log("Entity created with texture and pos.");
@@ -35,4 +42,9 @@ void Entity::SetEntityRotation(float _angle)
 {
 	mAngle = _angle; 
 	mSprite.setRotation(mAngle);
+}
+
+void Entity::UpdateDebugDrawable()
+{
+	mDebugRectShape.setPosition(mPosition);
 }

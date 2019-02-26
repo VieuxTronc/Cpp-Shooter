@@ -12,6 +12,7 @@ Projectile::Projectile(sf::Vector2f _pos, std::string _spritePath, CollisionMode
 	mCollisionMode = _colMode;
 	mSprite.setScale(sf::Vector2f(0.5f, 0.5f));
 	mSize = sf::Vector2f(mSize.x * mSprite.getScale().x, mSize.y * mSprite.getScale().y);
+	mDebugRectShape.setSize(mSize);
 	LaunchProjectile(sf::Vector2f(1.0f, 0.0f));
 }
 
@@ -37,18 +38,13 @@ void Projectile::MoveEntity(float _dt)
 
 		mRect = sf::FloatRect(mPosition, mSize);
 
-		//Debug
-		mDebugRectShape = sf::RectangleShape(mSize);
-		mDebugRectShape.setPosition(mPosition);
-		mDebugRectShape.setFillColor(sf::Color::Transparent);
-		mDebugRectShape.setOutlineColor(sf::Color::Red);
-		mDebugRectShape.setOutlineThickness(2.5f);
+		UpdateDebugDrawable();
 	}
 }
 
 void Projectile::CheckEntityCollision()
 {
-	std::vector<Entity*> enemyList = GameManager::GetInstance()->GetCurrentEnemyList();
+ 	std::vector<Entity*> enemyList = GameManager::GetInstance()->GetCurrentEnemyList();
 
 	switch (mCollisionMode)
 	{
@@ -56,6 +52,10 @@ void Projectile::CheckEntityCollision()
 
 		break;
 	case Projectile::ENEMY:
+		if(enemyList.size() <= 0) //NEED COLLISION FLAG SYSTEM IN ENTITY
+		{
+			return;
+		}
 		for (size_t i = 0; i < enemyList.size(); i++)
 		{
 			sf::FloatRect tempEnemyRect = enemyList[i]->GetEntityRect();

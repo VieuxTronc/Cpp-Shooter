@@ -52,4 +52,3 @@ void DebugCustom::SetDebugMode(bool _isDebugMode)
 	mIsDebugMode = _isDebugMode;
 	log(_isDebugMode);
 }
-

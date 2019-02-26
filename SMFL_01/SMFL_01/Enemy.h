@@ -11,7 +11,6 @@ public:
 	~Enemy();
 
 	void UpdateEntity(float _dt);
-	void UpdateDebugDrawable();
 	void ApplyDamage(Entity* _projectile); 
 	void CheckIfEntityIsAlive(); 
 

@@ -34,16 +34,7 @@ void Player::InitPlayer(sf::Vector2f _pos, std::string _spritePath)
 
 void Player::UpdateEntity(float _dt)
 {
-
-}
-
-void Player::UpdateDebugDrawable()
-{
-	mDebugRectShape = sf::RectangleShape(mSize);
-	mDebugRectShape.setPosition(mPosition);
-	mDebugRectShape.setFillColor(sf::Color::Transparent);
-	mDebugRectShape.setOutlineColor(sf::Color::Red);
-	mDebugRectShape.setOutlineThickness(2.5f);
+	UpdateDebugDrawable();
 }
 
 void Player::CheckPlayerBounds(sf::Vector2f _futurePos, sf::Vector2f _velocity)
@@ -70,15 +61,13 @@ void Player::MoveEntity(sf::Vector2f _inputVelocity, float _dt)
 	mSprite.setPosition(mPosition);
 
 	mRect = sf::FloatRect(mPosition, mSize);
-
-	UpdateDebugDrawable();
 }
 
 void Player::Fire(float _dt)
 {
 	if (mFireTimer >= mFireRate)
 	{
-		GameManager::GetInstance()->SpawnEntity(GameManager::EntityType::PROJECTILE, mPosition, 1);
+		GameManager::GetInstance()->SpawnEntity(GameManager::EntityType::PROJECTILE, sf::Vector2f(mPosition.x + mSize.x, mPosition.y + mSize.y / 2.5f), 1);
 		mFireTimer = 0.0f;
 	}
 

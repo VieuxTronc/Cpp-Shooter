@@ -34,7 +34,7 @@ public:
 
 	virtual void UpdateEntity(float _dt) {};
 	virtual void UpdateEntity() {};
-	virtual void UpdateDebugDrawable() {};
+	virtual void UpdateDebugDrawable();
 	
 	virtual void CheckIfEntityIsAlive() {};
 	virtual bool IsEntityAlive() { return mIsAlive; }
