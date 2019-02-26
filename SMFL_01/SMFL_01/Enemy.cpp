@@ -70,7 +70,6 @@ void Enemy::UpdateDebugDrawable()
 void Enemy::ApplyDamage(Entity * _projectile)
 {
 	mLifePoints -= _projectile->GetProjectileDamage(); 
-	//DebugCustom::GetInstance()->Log(std::to_string(mLifePoints));
 }
 
 void Enemy::CheckIfEntityIsAlive()

@@ -4,6 +4,7 @@
 #include "GameWindow.h"
 #include "GameManager.h"
 #include "DebugCustom.h"
+#include "UIText.h"
 
 BootMenuManager* BootMenuManager::s_pInstance = nullptr;
 
@@ -30,14 +31,16 @@ void BootMenuManager::InitBootMenu()
 {
 	GameWindow* pGamewindow = GameWindow::GetInstance();
 
-	UIText* pUITextPlay = new UIText("Play", 30, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y));
+	UIText* pUITextPlay = new UIText("Play", 30);
+	pUITextPlay->SetEntityPosition(sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y));
 	bootMenuButtonList.push_back(pUITextPlay);
 
-	UIText* pUITextOptions = new UIText("Options", 30, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 35.0f));
+	UIText* pUITextOptions = new UIText("Options", 30);
+	pUITextOptions->SetEntityPosition(sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 35.0f));
 	bootMenuButtonList.push_back(pUITextOptions);
 
-	UIText* pUITextQuit = new UIText("Quit", 30, sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 70.0f));
-
+	UIText* pUITextQuit = new UIText("Quit", 30);
+	pUITextQuit->SetEntityPosition(sf::Vector2f(pGamewindow->GetWindowMiddlePos().x - 35.0f, pGamewindow->GetWindowMiddlePos().y + 70.0f));
 	bootMenuButtonList.push_back(pUITextQuit);
 
 	SetCurrentSelectedButton(0);

@@ -21,7 +21,7 @@ public:
 
 	void CleanCurrentEntityList(); 
 	void FlushCurrentEntities();
-	//void RemoveEntityFromList(int _id);
+	void RemoveEntityFromList(vector<Entity*> _list, int _id);
 
 	enum EntityType {PLAYER, ENEMY, PROJECTILE}; // Need entity factory ! 
 	void SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int _number); // Need entity factory ! 

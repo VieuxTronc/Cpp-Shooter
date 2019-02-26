@@ -79,13 +79,13 @@ void GameManager::FlushCurrentEntities()
 	}
 }
 
-//void GameManager::RemoveEntityFromList(int _id)
-//{
-//	delete entitiesList[_id];
-//	entitiesList.erase(entitiesList.begin() + _id);
-//	
-//	DebugCustom::Log("Entity has been removed ");
-//}
+void GameManager::RemoveEntityFromList(vector<Entity*> _list, int _id)
+{
+	//delete _list[_id];
+	_list.erase(_list.begin() + _id);
+	
+	DebugCustom::Log("Entity has been removed ");
+}
 
 void GameManager::SpawnEntity(EntityType _type, sf::Vector2f _pos, unsigned int _number)
 {
