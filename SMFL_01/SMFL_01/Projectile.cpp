@@ -4,6 +4,7 @@
 #include "GameWindow.h"
 #include "GameManager.h"
 #include "DebugCustom.h"
+#include "HUDManager.h"
 
 Projectile::Projectile(sf::Vector2f _pos, std::string _spritePath, CollisionMode _colMode)
 {
@@ -62,7 +63,8 @@ void Projectile::CheckEntityCollision()
 			
 			if (mRect.intersects(tempEnemyRect) == true)
 			{
-				DebugCustom::Log("Projectile Intersecting with something");
+				//Update points each  time we touch 
+				//HUDManager::GetInstance()->GetPointsCounter()->UpdateText()
 				enemyList[i]->ApplyDamage(this);
 				mIsAlive = false;
 			}

@@ -55,6 +55,12 @@
     <Filter Include="Fichiers d%27en-tête\UI">
       <UniqueIdentifier>{8a698764-6d7b-4731-8382-108c3c9eb7d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\IO">
+      <UniqueIdentifier>{4efbc545-c397-46a6-89ed-e420b585977f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\IO">
+      <UniqueIdentifier>{a1f337bd-7ced-44f9-8cf7-1dbccc820f29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameWindow.h">
@@ -109,6 +115,9 @@
       <Filter>Fichiers d%27en-tête\Managers</Filter>
     </ClInclude>
     <ClInclude Include="Loader.h">
+      <Filter>Fichiers d%27en-tête\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="HUDManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -161,13 +170,16 @@
     <ClCompile Include="EntityFactory.cpp">
       <Filter>Fichiers sources\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Loader.cpp">
+      <Filter>Fichiers sources\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Fichiers sources\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="HUDManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

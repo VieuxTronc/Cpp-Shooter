@@ -1,0 +1,3 @@
+[SPEED] = "255.0f"
+[FIRE_RATE] = "0.25f"
+[LIFE] = "100.0f"

@@ -6,9 +6,9 @@ public:
 	~Loader();
 
 	static Loader* GetInstance();
-	static void LoadDataFromFile(string _file, string _tag);
+	static string LoadDataFromFile(string _file, string _tag);
 
-	const string PlayerConfig = "../data/test.txt";
+	const string PlayerConfig = "../data/Configs/PlayerConfig.txt";
 
 private:
 	static Loader* s_pInstance;

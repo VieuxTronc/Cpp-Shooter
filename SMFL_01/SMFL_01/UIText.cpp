@@ -26,11 +26,6 @@ UIText::~UIText()
 {
 }
 
-void UIText::UpdateText(string _txt)
-{
-
-}
-
 void UIText::SetSelected(bool _isSelected)
 {
 	mIsSelected = _isSelected;

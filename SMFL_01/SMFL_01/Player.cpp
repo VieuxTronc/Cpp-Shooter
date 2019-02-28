@@ -2,6 +2,8 @@
 #include "Player.h"
 #include <SFML/Graphics.hpp>
 #include "GameWindow.h"
+#include "Loader.h"
+#include "HUDManager.h"
 
 Player* Player::s_pInstance = nullptr;
 
@@ -30,11 +32,19 @@ void Player::InitPlayer(sf::Vector2f _pos, std::string _spritePath)
 	_pos.y = (GameWindow::GetInstance()->GetWindowSizef().y / 2) - mTexture.getSize().y;
 
 	CreateEntity(_spritePath, _pos, sf::Vector2f(1.0f, 1.0f));
+
+	mSpeed = stof(Loader::LoadDataFromFile(Loader::GetInstance()->PlayerConfig, "[SPEED]"));
+	mFireRate = stof(Loader::LoadDataFromFile(Loader::GetInstance()->PlayerConfig, "[FIRE_RATE]"));
+	mFireTimer = mFireRate;
+	mLifePoints = stof(Loader::LoadDataFromFile(Loader::GetInstance()->PlayerConfig, "[LIFE]"));
 }
 
 void Player::UpdateEntity(float _dt)
 {
 	UpdateDebugDrawable();
+
+	//Update life points 
+	//HUDManager::GetInstance()->GetPointsCounter()->UpdateText()
 }
 
 void Player::CheckPlayerBounds(sf::Vector2f _futurePos, sf::Vector2f _velocity)

@@ -170,6 +170,7 @@
     <ClInclude Include="FormulaOne.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="HUDManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="MonsterTruck.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="FormulaOne.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameWindow.cpp" />
+    <ClCompile Include="HUDManager.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="main.cpp" />

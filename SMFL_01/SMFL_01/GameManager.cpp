@@ -7,6 +7,7 @@
 #include "BootMenuManager.h"
 #include "SplashScreenManager.h"
 #include "Loader.h"
+#include "HUDManager.h"
 
 GameManager* GameManager::s_pInstance = nullptr;
 
@@ -31,15 +32,17 @@ GameManager* GameManager::GetInstance()
 void GameManager::InitGame()
 {
 	SplashScreenManager::GetInstance()->InitSplashScreen();
-	Loader::LoadDataFromFile(Loader::GetInstance()->PlayerConfig, "[TEST]");
 }
 
 void GameManager::InitLevel() //Will need int as a parameter to init the proper level. 
 {
 	Background* pBackground = new Background("../data/background.png", false, Background::FadeType::NONE);
 
+	HUDManager::GetInstance()->InitHUDManager();
+
 	Player::GetInstance()->InitPlayer(sf::Vector2f(0.0f, 0.0f), "../data/ship.png");
 
+	//Need to be spawned from file and managed by LevelManager or something 
 	Enemy* pEnemy = new Enemy(sf::Vector2f(100.0f, 250.0f), "../data/ship.png");
 }
 

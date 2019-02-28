@@ -21,7 +21,7 @@ Loader* Loader::GetInstance()
 	return s_pInstance;
 }
 
-void Loader::LoadDataFromFile(string _file, string _tag)
+string Loader::LoadDataFromFile(string _file, string _tag)
 {
 	string line;
 	ifstream file(_file);
@@ -35,11 +35,11 @@ void Loader::LoadDataFromFile(string _file, string _tag)
 				unsigned firstDelimiter = line.find("\"");
 				unsigned lastDelimiter = line.find_last_of("\"");
 				string content = line.substr(firstDelimiter + 1, lastDelimiter - 1 - firstDelimiter);
-				cout << content << endl;
+				return content; 
 			}
 		}
 		file.close();
 	}
 
-	else cout << "Unable to open file";
+	else return "";
 }
